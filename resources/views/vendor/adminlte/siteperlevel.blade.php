@@ -379,232 +379,235 @@
                 .style("shape-rendering", "crispEdges")
         }
 
+        var domain = "http://dashboard.co.za";
+        //var domain = "http://35.167.165.90"
+        
         var question = 1;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 1);
         });
 
         question = 2;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 2);
         });
 
         question = 3;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 3);
         });
 
         question = 4;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 4);
         });
 
         question = 5;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 5);
         });
 
         question = 6;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 6);
         });
 
         question = 7;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 7);
         });
 
         question = 8;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 8);
         });
 
         question = 9;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 9);
         });
 
         question = 10;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 10);
         });
 
         question = 11;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 11);
         });
 
         question = 12;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 12);
         });
         question = 13;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 13);
         });
         question = 14;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 14);
         });
         question = 15;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 15);
         });
         question = 16;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 16);
         });
         question = 17;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 17);
         });
         question = 18;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 18);
         });
         question = 19;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 19);
         });
         question = 20;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 20);
         });
 
         question = 21;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 21);
         });
         question = 22;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 22);
         });
         question = 23;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 23);
         });
         question = 24;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 24);
         });
         question = 25;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 25);
         });
         question = 26;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 26);
         });
         question = 27;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 27);
         });
         question = 28;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 28);
         });
         question = 29;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 29);
         });
         question = 30;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 30);
         });
 
         question = 31;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 31);
         });
         question = 32;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 32);
         });
         question = 33;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 33);
         });
         question = 34;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 34);
         });
         question = 35;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 35);
         });
         question = 36;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 36);
         });
         question = 37;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 37);
         });
         question = 38;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 38);
         });
         question = 39;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 39);
         });
         question = 40;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 40);
         });
 
         question = 41;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 41);
         });
         question = 42;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 42);
         });
         question = 43;
-        var url = "http://dashboard.co.za/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
+        var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
             buildGraph(err, data, 43);
         });
