@@ -303,8 +303,8 @@
 
             var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c"]);
 
-            var margin = {top: 20, right: 20, bottom: 30, left: 80},
-                width = 800 - margin.left - margin.right,
+            var margin = {top: 20, right: 20, bottom: 30, left: 120},
+                width = 850 - margin.left - margin.right,
                 height = 300 - margin.top - margin.bottom;
 
             var x = d3.scaleLinear().range([0, width]);
@@ -381,7 +381,7 @@
 
         var domain = "http://dashboard.co.za";
         //var domain = "http://35.167.165.90"
-        
+
         var question = 1;
         var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
         d3.json(url, function (err, data) {
