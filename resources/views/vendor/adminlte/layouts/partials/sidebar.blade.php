@@ -33,10 +33,10 @@
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <li><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
 
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Per Section</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-link'></i> <span>Grouped</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('sitegraph') }}?site=Corporate">Corporate</a></li>
                     <li><a href="{{ url('sitegraph') }}?site=DAF">DAF</a></li>
@@ -46,13 +46,24 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Per Level</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-link'></i> <span>Per Site</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('levelgraph') }}?site=Corporate">Corporate</a></li>
                     <li><a href="{{ url('levelgraph') }}?site=DAF">DAF</a></li>
                     <li><a href="{{ url('levelgraph') }}?site=Ga-Rankuwa">Ga-Rankuwa</a></li>
                     <li><a href="{{ url('levelgraph') }}?site=Neave">Neave</a></li>
                     <li><a href="{{ url('levelgraph') }}?site=Struandale">Struandale</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Per Level</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('sitesgraph') }}?site=Shopfloor">Shopfloor</a></li>
+                    <li><a href="{{ url('sitesgraph') }}?site=General_Staff">General Staff</a></li>
+                    <li><a href="{{ url('sitesgraph') }}?site=Senior_Staff">Senior Staff</a></li>
+                    <li><a href="{{ url('sitesgraph') }}?site=Middle_Management">Middle Management</a></li>
+                    <li><a href="{{ url('sitesgraph') }}?site=Senior_Management">Senior Management</a></li>
+                    <li><a href="{{ url('sitesgraph') }}?site=Junior_Management">Junior Management</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

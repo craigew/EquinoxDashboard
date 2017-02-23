@@ -597,12 +597,12 @@ and site='" . $site . "' or ''='" . $site . "';");
         $siteData = $this->agreeStronglyAgreeAverageSelect($question, $site);
         $sx = $this->agreeStronglyAgreeAverageSelect($question, '');
 
-        return array("Name" =>  $question,
+        return array("Name" => $question,
             $site => $siteData[0]->average,
             "Shatterpruffe" => $sx[0]->average);
     }
 
-    public function returnAverageDataForLevels( $site,$question)
+    public function returnAverageDataForLevels($site, $question)
     {
         return DB::select("SELECT Level,round(avg(`" . $question . "`),2) as average 
 FROM Equinox.ResultsFinal 
@@ -614,6 +614,20 @@ select 'Site average' as Level,round(avg(`" . $question . "`),2) as average
 FROM Equinox.ResultsFinal 
 where `" . $question . "` in (3,4)
 and site='" . $site . "' or ''='" . $site . "';");
+    }
+
+    public function returnAverageDataForSites($level, $question)
+    {
+        return DB::select("SELECT Site,round(avg(`1`),2) as average 
+FROM Equinox.ResultsFinal 
+where `1` in (3,4)
+and Level='" . $level . "' or ''='" . $level . "'
+group by Site
+union
+select 'All Site Average' as Site,round(avg(`1`),2) as average 
+FROM Equinox.ResultsFinal 
+where `1` in (3,4)
+and Level='" . $level . "' or ''='" . $level . "'");
     }
 
 

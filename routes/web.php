@@ -28,6 +28,8 @@ Route::get('sitegraph', 'SitegraphController@index');
 
 Route::get('levelgraph', 'LevelgraphController@index');
 
+Route::get('sitesgraph', 'SitesgraphController@index');
+
 
 
 
@@ -102,3 +104,5 @@ Route::get('results/average/learning/{site}', 'ResultsController@returnAverageDa
 Route::get('results/average/job/{site}', 'ResultsController@returnAverageDataForJob');
 
 Route::get('results/levelaverage/site/{site}/question/{question}', 'ResultsController@returnAverageDataForLevels');
+
+Route::get('results/siteaverage/level/{level}/question/{question}', 'ResultsController@returnAverageDataForSites');

@@ -35,4 +35,9 @@
             echo json_encode($trans);
         @endphp
     </script>
+    <style>
+        .sidebar .sidebar-menu .active .treeview-menu {
+            display: block;
+        }
+    </style>
 </head>
