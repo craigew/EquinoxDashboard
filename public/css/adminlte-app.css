@@ -5525,8 +5525,7 @@ fieldset[disabled] .btn-yahoo.active {
   .no-print,
   .main-sidebar,
   .left-side,
-  .main-header,
-  .content-header {
+  .main-header{
     display: none !important;
   }
   .content-wrapper,
