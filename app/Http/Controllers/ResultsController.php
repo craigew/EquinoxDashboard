@@ -463,10 +463,10 @@ order by Engagement_Avg desc;");
 
     function agreeStronglyAgreeAverageSelect($question, $site)
     {
-        return DB::select("SELECT round(avg(`" . $question . "`),2) as average
+        return DB::select("SELECT Round((count(`" . $question . "`)/(select count(*) from Equinox.ResultsFinal where (site='" . $site . "' or ''='" . $site . "')))*100) as PercPosResp
 FROM Equinox.ResultsFinal 
-where `1` in (3,4)
-and site='" . $site . "' or ''='" . $site . "';");
+where `" . $question . "` in (3,4)
+and (site='" . $site . "' or ''='" . $site . "');");
     }
 
     public function returnAverageDataForEngagement($site)
@@ -598,35 +598,59 @@ and site='" . $site . "' or ''='" . $site . "';");
         $sx = $this->agreeStronglyAgreeAverageSelect($question, '');
 
         return array("Name" => $question,
-            $site => $siteData[0]->average,
-            "Shatterpruffe" => $sx[0]->average);
+            $site => $siteData[0]->PercPosResp,
+            "Shatterpruffe" => $sx[0]->PercPosResp);
     }
 
     public function returnAverageDataForLevels($site, $question)
     {
-        return DB::select("SELECT Level,round(avg(`" . $question . "`),2) as average 
-FROM Equinox.ResultsFinal 
+        return DB::select("Select posCount.Level,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPosResp
+from (select count(*) as TotPosCountForLevel,Level
+from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
 and site='" . $site . "' or ''='" . $site . "'
-group by Level
+group by Level) posCount,
+(select count(*) as TotCountForLevel,Level
+from Equinox.ResultsFinal a
+where site='" . $site . "' or ''='" . $site . "'
+group by Level) totCount
+where posCount.Level=totCount.Level
 union
-select 'Site average' as Level,round(avg(`" . $question . "`),2) as average 
-FROM Equinox.ResultsFinal 
+select \"Site Positive results\" as Level,Round((count(*)/(select count(*) from Equinox.ResultsFinal where site='" . $site . "' or ''='" . $site . "'))*100) sitePerc
+from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
-and site='" . $site . "' or ''='" . $site . "';");
+and site='" . $site . "' or ''='" . $site . "'");
+
     }
 
     public function returnAverageDataForSites($level, $question)
     {
-        return DB::select("SELECT Site,round(avg(`1`),2) as average 
-FROM Equinox.ResultsFinal 
-where `1` in (3,4)
+//        return DB::select("SELECT Site,round(avg(`1`),2) as average
+//FROM Equinox.ResultsFinal
+//where `1` in (3,4)
+//and Level='" . $level . "' or ''='" . $level . "'
+//group by Site
+//union
+//select 'All Site Average' as Site,round(avg(`1`),2) as average
+//FROM Equinox.ResultsFinal
+//where `1` in (3,4)
+//and Level='" . $level . "' or ''='" . $level . "'");
+
+        return DB::select("Select posCount.Site,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPosResp
+from (select count(*) as TotPosCountForLevel,Site
+from Equinox.ResultsFinal a
+where `" . $question . "` in (3,4)
 and Level='" . $level . "' or ''='" . $level . "'
-group by Site
+group by Site) posCount,
+(select count(*) as TotCountForLevel,Site
+from Equinox.ResultsFinal a
+where Level='" . $level . "' or ''='" . $level . "'
+group by Site) totCount
+where posCount.Site=totCount.Site
 union
-select 'All Site Average' as Site,round(avg(`1`),2) as average 
-FROM Equinox.ResultsFinal 
-where `1` in (3,4)
+select \"Level Positive results\" as Site,Round((count(*)/(select count(*) from Equinox.ResultsFinal where Level='" . $level . "' or ''='" . $level . "'))*100) sitePerc
+from Equinox.ResultsFinal a
+where `" . $question . "` in (3,4)
 and Level='" . $level . "' or ''='" . $level . "'");
     }
 

@@ -258,7 +258,7 @@
             return questions[d.Name-1];
         }));
         y1.domain(options).rangeRound([0, y0.bandwidth()]);
-        x.domain([0, 4]);
+        x.domain([0, 100]);
 
 
         svg.append("g")
@@ -335,23 +335,23 @@
             .enter().append("g")
             .attr("class", "legend")
             .attr("transform", function (d, i) {
-                return "translate(" + i * 100 + ",0)";
+                return "translate(0," + i * 20 + ")";
             });
 
         legend.append("rect")
             .attr("x", (width / 2) - 30)
-            .attr("y", height + 40)
+            .attr("y", height + 25)
             .attr("width", 18)
             .attr("height", 18)
             .style("fill", color);
 
         legend.append("text")
             .attr("x", width / 2 - 40)
-            .attr("y", height + 49)
+            .attr("y", height + 35)
             .attr("dy", ".35em")
             .style("text-anchor", "end")
             .text(function (d) {
-                return d;
+                return "Percentage positive responses for " + d;
             })
             .style("font-size", "10px")
             .style("font-family", "arial");

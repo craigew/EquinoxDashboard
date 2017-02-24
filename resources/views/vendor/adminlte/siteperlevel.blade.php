@@ -329,7 +329,7 @@
                 .text(questions[question - 1]);
 
 
-            x.domain([0, 4]);
+            x.domain([0, 100]);
             y.domain(data.map(function (d) {
                 return d.Level.replace("_"," ");
             })).padding(0.1);
@@ -355,10 +355,10 @@
                     return y(d.Level.replace("_"," "));
                 })
                 .attr("width", function (d) {
-                    return x(d.average);
+                    return x(d.PerPosResp);
                 })
                 .attr("fill", function (d, i) {
-                    if (d.Level == "Site average") {
+                    if (d.Level == "Site Positive results") {
                         return color(0)
                     } else {
                         return color(1)

@@ -329,7 +329,7 @@
                 .text(questions[question - 1]);
 
 
-            x.domain([0, 4]);
+            x.domain([0, 100]);
             y.domain(data.map(function (d) {
                 return d.Site;
             })).padding(0.1);
@@ -355,10 +355,10 @@
                     return y(d.Site);
                 })
                 .attr("width", function (d) {
-                    return x(d.average);
+                    return x(d.PerPosResp);
                 })
                 .attr("fill", function (d, i) {
-                    if (d.Site == "All Site Average") {
+                    if (d.Site == "Level Positive results") {
                         return color(0)
                     } else {
                         return color(1)
