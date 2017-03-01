@@ -314,7 +314,7 @@
                 .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
-                .style("background-color","white")
+                .style("background-color", "white")
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -345,9 +345,12 @@
                 .attr("class", "y axis")
                 .call(d3.axisLeft(y));
 
-            svg.selectAll(".bar")
+            var bar = svg.selectAll(".bar")
                 .data(data)
-                .enter().append("rect")
+                .enter();
+
+
+            bar.append("rect")
                 .attr("class", "bar")
                 .attr("x", 0)
                 .attr("height", y.bandwidth())
@@ -365,6 +368,20 @@
                     }
                 })
                 .style("opacity", "0.7");
+
+            bar.append("text")
+                .attr("x", function (d) {
+                    return x(d.PerPosResp) - 25;
+                })
+                .attr("y", function (d) {
+                    return y(d.Site) + (y.bandwidth() / 2);
+                })
+                .attr("dy", ".35em")
+                .text(function (d) {
+                    return d.PerPosResp;
+                })
+                .style("font-size", "10px")
+                .style("font-family", "arial");
 
             svg.selectAll(".x path")
                 .style("display", "none");

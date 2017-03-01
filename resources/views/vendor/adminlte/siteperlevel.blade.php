@@ -307,6 +307,7 @@
                 width = 850 - margin.left - margin.right,
                 height = 300 - margin.top - margin.bottom;
 
+
             var x = d3.scaleLinear().range([0, width]);
             var y = d3.scaleBand().range([height, 0]);
 
@@ -331,7 +332,7 @@
 
             x.domain([0, 100]);
             y.domain(data.map(function (d) {
-                return d.Level.replace("_"," ");
+                return d.Level.replace("_", " ");
             })).padding(0.1);
 
             svg.append("g")
@@ -345,14 +346,16 @@
                 .attr("class", "y axis")
                 .call(d3.axisLeft(y));
 
-            svg.selectAll(".bar")
+            var bar = svg.selectAll(".bar")
                 .data(data)
-                .enter().append("rect")
+                .enter();
+
+            bar.append("rect")
                 .attr("class", "bar")
                 .attr("x", 0)
                 .attr("height", y.bandwidth())
                 .attr("y", function (d) {
-                    return y(d.Level.replace("_"," "));
+                    return y(d.Level.replace("_", " "));
                 })
                 .attr("width", function (d) {
                     return x(d.PerPosResp);
@@ -365,6 +368,21 @@
                     }
                 })
                 .style("opacity", "0.7");
+
+            bar.append("text")
+                .attr("x", function (d) {
+                    return x(d.PerPosResp)  -25;
+                })
+                .attr("y", function (d) {
+                    return y(d.Level.replace("_", " ")) + (y.bandwidth() / 2);
+                })
+                .attr("dy", ".35em")
+                .text(function (d) {
+                    return d.PerPosResp;
+                })
+                .style("font-size", "10px")
+                .style("font-family", "arial");
+
 
             svg.selectAll(".x path")
                 .style("display", "none");
@@ -382,7 +400,7 @@
                 .style("shape-rendering", "crispEdges")
 
             svg.selectAll("rect .bar")
-                ;
+            ;
         }
 
         var domain = "http://dashboard.co.za";
