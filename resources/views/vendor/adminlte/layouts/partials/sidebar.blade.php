@@ -61,9 +61,10 @@
                     <li><a href="{{ url('sitesgraph') }}?site=Shopfloor">Shopfloor</a></li>
                     <li><a href="{{ url('sitesgraph') }}?site=General_Staff">General Staff</a></li>
                     <li><a href="{{ url('sitesgraph') }}?site=Senior_Staff">Senior Staff</a></li>
+                    <li><a href="{{ url('sitesgraph') }}?site=Junior_Management">Junior Management</a></li>
                     <li><a href="{{ url('sitesgraph') }}?site=Middle_Management">Middle Management</a></li>
                     <li><a href="{{ url('sitesgraph') }}?site=Senior_Management">Senior Management</a></li>
-                    <li><a href="{{ url('sitesgraph') }}?site=Junior_Management">Junior Management</a></li>
+
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->
