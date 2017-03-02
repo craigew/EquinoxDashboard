@@ -604,7 +604,27 @@ and (site='" . $site . "' or ''='" . $site . "');");
 
     public function returnAverageDataForLevels($site, $question)
     {
-        return DB::select("Select posCount.Level,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPosResp
+//        return DB::select("Select posCount.Level,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPosResp
+//from (select count(*) as TotPosCountForLevel,Level
+//from Equinox.ResultsFinal a
+//where `" . $question . "` in (3,4)
+//and site='" . $site . "' or ''='" . $site . "'
+//group by Level) posCount,
+//(select count(*) as TotCountForLevel,Level
+//from Equinox.ResultsFinal a
+//where site='" . $site . "' or ''='" . $site . "'
+//group by Level) totCount
+//where posCount.Level=totCount.Level
+//union
+//select \"Site Positive results\" as Level,Round((count(*)/(select count(*) from Equinox.ResultsFinal where site='" . $site . "' or ''='" . $site . "'))*100) sitePerc
+//from Equinox.ResultsFinal a
+//where `" . $question . "` in (3,4)
+//and site='" . $site . "' or ''='" . $site . "'");
+
+        return DB::select("select *
+from 
+(
+Select posCount.Level,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPosResp
 from (select count(*) as TotPosCountForLevel,Level
 from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
@@ -619,7 +639,17 @@ union
 select \"Site Positive results\" as Level,Round((count(*)/(select count(*) from Equinox.ResultsFinal where site='" . $site . "' or ''='" . $site . "'))*100) sitePerc
 from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
-and site='" . $site . "' or ''='" . $site . "'");
+and site='" . $site . "' or ''='" . $site . "') a
+order by 
+CASE
+WHEN Level='Shopfloor' THEN 1 
+ WHEN Level='General_Staff' THEN 2 
+  WHEN Level = 'Senior_Staff' THEN 3
+ WHEN Level = 'Junior_Management' THEN 4
+ WHEN Level = 'Middle_Management' THEN 5
+WHEN Level='Senior_Management' THEN 6
+WHEN Level='Site Positive results' THEN 7
+END");
 
     }
 
