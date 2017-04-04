@@ -36,62 +36,62 @@ Route::get('sitesgraph', 'SitesgraphController@index');
 //APIs
 Route::get('results', 'ResultsController@index');
 
-Route::get('results/site/{site}', 'ResultsController@returnBySite');
+Route::get('results/client/{client}/site/{site}', 'ResultsController@returnBySite');
 
-Route::get('results/level/{level}', 'ResultsController@returnByLevel');
+Route::get('results/client/{client}/level/{level}', 'ResultsController@returnByLevel');
 
-Route::get('results/site/{site}/level/{level}', 'ResultsController@returnBySiteAndLevel');
+Route::get('results/client/{client}/site/{site}/level/{level}', 'ResultsController@returnBySiteAndLevel');
 
-Route::get('results/question/{id}', 'ResultsController@returnQuestion');
+Route::get('results/client/{client}/question/{id}', 'ResultsController@returnQuestion');
 
-Route::get('results/question/{id}/site/{site}', 'ResultsController@returnQuestionForSite');
-Route::get('results/question/{id}/level/{level}', 'ResultsController@returnQuestionForLevel');
-Route::get('results/question/{id}/site/{site}/level/{level}', 'ResultsController@returnQuestionForSiteAndLevel');
+Route::get('results/client/{client}/question/{id}/site/{site}', 'ResultsController@returnQuestionForSite');
+Route::get('results/client/{client}/question/{id}/level/{level}', 'ResultsController@returnQuestionForLevel');
+Route::get('results/client/{client}/question/{id}/site/{site}/level/{level}', 'ResultsController@returnQuestionForSiteAndLevel');
 
-Route::get('results/engagement', 'ResultsController@returnEngagement');
-Route::get('results/engagement/site/{site}', 'ResultsController@returnEngagementForSite');
-Route::get('results/engagement/level/{level}', 'ResultsController@returnEngagementForLevel');
-Route::get('results/engagement/site/{site}/level/{level}', 'ResultsController@returnEngagementForSiteAndLevel');
+Route::get('results/client/{client}/engagement', 'ResultsController@returnEngagement');
+Route::get('results/client/{client}/engagement/site/{site}', 'ResultsController@returnEngagementForSite');
+Route::get('results/client/{client}/engagement/level/{level}', 'ResultsController@returnEngagementForLevel');
+Route::get('results/client/{client}/engagement/site/{site}/level/{level}', 'ResultsController@returnEngagementForSiteAndLevel');
 
-Route::get('results/teamwork', 'ResultsController@returnTeamwork');
-Route::get('results/teamwork/site/{site}', 'ResultsController@returnTeamworkForSite');
-Route::get('results/teamwork/level/{level}', 'ResultsController@returnTeamworkForLevel');
-Route::get('results/teamwork/site/{site}/level/{level}', 'ResultsController@returnTeamworkForSiteAndLevel');
+Route::get('results/client/{client}/teamwork', 'ResultsController@returnTeamwork');
+Route::get('results/client/{client}/teamwork/site/{site}', 'ResultsController@returnTeamworkForSite');
+Route::get('results/client/{client}/teamwork/level/{level}', 'ResultsController@returnTeamworkForLevel');
+Route::get('results/client/{client}/teamwork/site/{site}/level/{level}', 'ResultsController@returnTeamworkForSiteAndLevel');
 
-Route::get('results/meaning', 'ResultsController@returnMeaning');
-Route::get('results/meaning/site/{site}', 'ResultsController@returnMeaningForSite');
-Route::get('results/meaning/level/{level}', 'ResultsController@returnMeaningForLevel');
-Route::get('results/meaning/site/{site}/level/{level}', 'ResultsController@returnMeaningForSiteAndLevel');
+Route::get('results/client/{client}/meaning', 'ResultsController@returnMeaning');
+Route::get('results/client/{client}/meaning/site/{site}', 'ResultsController@returnMeaningForSite');
+Route::get('results/client/{client}/meaning/level/{level}', 'ResultsController@returnMeaningForLevel');
+Route::get('results/client/{client}/meaning/site/{site}/level/{level}', 'ResultsController@returnMeaningForSiteAndLevel');
 
-Route::get('results/recognition', 'ResultsController@returnRecognition');
-Route::get('results/recognition/site/{site}', 'ResultsController@returnRecognitionForSite');
-Route::get('results/recognition/level/{level}', 'ResultsController@returnRecognitionForLevel');
-Route::get('results/recognition/site/{site}/level/{level}', 'ResultsController@returnRecognitionForSiteAndLevel');
+Route::get('results/client/{client}/recognition', 'ResultsController@returnRecognition');
+Route::get('results/client/{client}/recognition/site/{site}', 'ResultsController@returnRecognitionForSite');
+Route::get('results/client/{client}/recognition/level/{level}', 'ResultsController@returnRecognitionForLevel');
+Route::get('results/client/{client}/recognition/site/{site}/level/{level}', 'ResultsController@returnRecognitionForSiteAndLevel');
 
-Route::get('results/leadership', 'ResultsController@returnLeadership');
-Route::get('results/leadership/site/{site}', 'ResultsController@returnLeadershipForSite');
-Route::get('results/leadership/level/{level}', 'ResultsController@returnLeadershipForLevel');
-Route::get('results/leadership/site/{site}/level/{level}', 'ResultsController@returnLeadershipForSiteAndLevel');
+Route::get('results/client/{client}/leadership', 'ResultsController@returnLeadership');
+Route::get('results/client/{client}/leadership/site/{site}', 'ResultsController@returnLeadershipForSite');
+Route::get('results/client/{client}/leadership/level/{level}', 'ResultsController@returnLeadershipForLevel');
+Route::get('results/client/{client}/leadership/site/{site}/level/{level}', 'ResultsController@returnLeadershipForSiteAndLevel');
 
-Route::get('results/superior', 'ResultsController@returnSuperior');
-Route::get('results/superior/site/{site}', 'ResultsController@returnSuperiorForSite');
-Route::get('results/superior/level/{level}', 'ResultsController@returnSuperiorForLevel');
-Route::get('results/superior/site/{site}/level/{level}', 'ResultsController@returnSuperiorForSiteAndLevel');
+Route::get('results/client/{client}/superior', 'ResultsController@returnSuperior');
+Route::get('results/client/{client}/superior/site/{site}', 'ResultsController@returnSuperiorForSite');
+Route::get('results/client/{client}/superior/level/{level}', 'ResultsController@returnSuperiorForLevel');
+Route::get('results/client/{client}/superior/site/{site}/level/{level}', 'ResultsController@returnSuperiorForSiteAndLevel');
 
-Route::get('results/communication', 'ResultsController@returnCommunication');
-Route::get('results/communication/site/{site}', 'ResultsController@returnCommunicationForSite');
-Route::get('results/communication/level/{level}', 'ResultsController@returnCommunicationForLevel');
-Route::get('results/communication/site/{site}/level/{level}', 'ResultsController@returnCommunicationForSiteAndLevel');
+Route::get('results/client/{client}/communication', 'ResultsController@returnCommunication');
+Route::get('results/client/{client}/communication/site/{site}', 'ResultsController@returnCommunicationForSite');
+Route::get('results/client/{client}/communication/level/{level}', 'ResultsController@returnCommunicationForLevel');
+Route::get('results/client/{client}/communication/site/{site}/level/{level}', 'ResultsController@returnCommunicationForSiteAndLevel');
 
-Route::get('results/learning', 'ResultsController@returnLearning');
-Route::get('results/learning/site/{site}', 'ResultsController@returnLearningForSite');
-Route::get('results/learning/level/{level}', 'ResultsController@returnLearningForLevel');
-Route::get('results/learning/site/{site}/level/{level}', 'ResultsController@returnLearningForSiteAndLevel');
+Route::get('results/client/{client}/learning', 'ResultsController@returnLearning');
+Route::get('results/client/{client}/learning/site/{site}', 'ResultsController@returnLearningForSite');
+Route::get('results/client/{client}/learning/level/{level}', 'ResultsController@returnLearningForLevel');
+Route::get('results/client/{client}/learning/site/{site}/level/{level}', 'ResultsController@returnLearningForSiteAndLevel');
 
-Route::get('results/job', 'ResultsController@returnJob');
-Route::get('results/job/site/{site}', 'ResultsController@returnJobForSite');
-Route::get('results/job/level/{level}', 'ResultsController@returnJobForLevel');
-Route::get('results/job/site/{site}/level/{level}', 'ResultsController@returnJobForSiteAndLevel');
+Route::get('results/client/{client}/job', 'ResultsController@returnJob');
+Route::get('results/client/{client}/job/site/{site}', 'ResultsController@returnJobForSite');
+Route::get('results/client/{client}/job/level/{level}', 'ResultsController@returnJobForLevel');
+Route::get('results/client/{client}/job/site/{site}/level/{level}', 'ResultsController@returnJobForSiteAndLevel');
 
 Route::get('results/average/engagement/{site}', 'ResultsController@returnAverageDataForEngagement');
 Route::get('results/average/teamwork/{site}', 'ResultsController@returnAverageDataForTeamwork');

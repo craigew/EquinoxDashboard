@@ -33,150 +33,163 @@ class ResultsController extends Controller
             ->get();
     }
 
-    public function returnQuestion($id)
+    public function returnQuestion($client,$id)
     {
         if ($id == '11') {
-            return DB::select("SELECT case `11` 
+            return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
 when '3' then 'Satisfied'
 when '4' then 'Extremely Satisfied'
 else 'No'
 end as 'description' ,count(*) as count
-FROM Equinox.ResultsFinal 
-group by `11`
-order by `11` desc");
-        } else if ($id == '44') {
-            return DB::select('select `44` description ,count(*) count
-FROM Equinox.ResultsFinal 
-group by `44`;');
-        } else {
-            return DB::select('SELECT description,count(*) as count 
-FROM Equinox.ResultsFinal inner join Equinox.labels on `' . $id . '`=id 
-group by `' . $id . '`,description 
-order by `' . $id . '` desc;');
-        }
-    }
-
-    public function returnQuestionForLevel($id, $level)
-    {
-        if ($id == '11') {
-            return DB::select("SELECT case `11` 
-when '1' then 'Extremely Disatisfied'
-when '2' then 'Disatisfied'
-when '3' then 'Satisfied'
-when '4' then 'Extremely Satisfied'
-else 'No'
-end as 'description' ,count(*) as count
-FROM Equinox.ResultsFinal 
-where Level='" . $level . "'
+FROM Equinox.ResultsFinal
+where Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
         } else if ($id == '44') {
             return DB::select("select `44` description ,count(*) count
-FROM Equinox.ResultsFinal 
-where Level='" . $level . "'
+FROM Equinox.ResultsFinal
+where Engagement='" . $client . "'
 group by `44`;");
         } else {
-            return DB::select("SELECT description,count(*) as count 
-FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id 
-where Level='" . $level . "'
+            return DB::select("SELECT description,count(*) as count
+FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
+where Engagement='" . $client . "'
 group by `" . $id . "`,description
 order by `" . $id . "` desc;");
         }
     }
 
-    public function returnQuestionForSite($id, $site)
+    public function returnQuestionForLevel($client,$id, $level)
     {
         if ($id == '11') {
-            return DB::select("SELECT case `11` 
+            return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
 when '3' then 'Satisfied'
 when '4' then 'Extremely Satisfied'
 else 'No'
 end as 'description' ,count(*) as count
-FROM Equinox.ResultsFinal 
-where Site='" . $site . "'
+FROM Equinox.ResultsFinal
+where Level='" . $level . "'
+and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
         } else if ($id == '44') {
             return DB::select("select `44` description ,count(*) count
-FROM Equinox.ResultsFinal 
-where Site='" . $site . "'
+FROM Equinox.ResultsFinal
+where Level='" . $level . "'
+and Engagement='" . $client . "'
 group by `44`;");
         } else {
-            return DB::select("SELECT description,count(*) as count 
-FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id 
+            return DB::select("SELECT description,count(*) as count
+FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
+where Level='" . $level . "'
+and Engagement='" . $client . "'
+group by `" . $id . "`,description
+order by `" . $id . "` desc;");
+        }
+    }
+
+    public function returnQuestionForSite($client,$id, $site)
+    {
+        if ($id == '11') {
+            return DB::select("SELECT case `11`
+when '1' then 'Extremely Disatisfied'
+when '2' then 'Disatisfied'
+when '3' then 'Satisfied'
+when '4' then 'Extremely Satisfied'
+else 'No'
+end as 'description' ,count(*) as count
+FROM Equinox.ResultsFinal
 where Site='" . $site . "'
+and Engagement='" . $client . "'
+group by `11`
+order by `11` desc");
+        } else if ($id == '44') {
+            return DB::select("select `44` description ,count(*) count
+FROM Equinox.ResultsFinal
+where Site='" . $site . "'
+and Engagement='" . $client . "'
+group by `44`;");
+        } else {
+            return DB::select("SELECT description,count(*) as count
+FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
+where Site='" . $site . "'
+and Engagement='" . $client . "'
 group by `" . $id . "`,description
 order by `" . $id . "` desc;");
         }
 
     }
 
-    public function returnQuestionForSiteAndLevel($id, $site, $level)
+    public function returnQuestionForSiteAndLevel($client,$id, $site, $level)
     {
         if ($id == '11') {
-            return DB::select("SELECT case `11` 
+            return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
 when '3' then 'Satisfied'
 when '4' then 'Extremely Satisfied'
 else 'No'
 end as 'description' ,count(*) as count
-FROM Equinox.ResultsFinal 
+FROM Equinox.ResultsFinal
 where Site='" . $site . "'
 and Level='" . $level . "'
+and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
         } else if ($id == '44') {
             return DB::select("select `44` description ,count(*) count
-FROM Equinox.ResultsFinal 
+FROM Equinox.ResultsFinal
 where Site='" . $site . "'
 and Level='" . $level . "'
+and Engagement='" . $client . "'
 group by `44`;");
         } else {
-            return DB::select("SELECT description,count(*) as count 
-FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id 
+            return DB::select("SELECT description,count(*) as count
+FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
 where Site='" . $site . "'
 and Level='" . $level . "'
+and Engagement='" . $client . "'
 group by `" . $id . "`,description
 order by `" . $id . "` desc;");
         }
     }
 
     public
-    function returnEngagement()
+    function returnEngagement($client)
     {
         return $this->engagementSelect('', '');
     }
 
     public
-    function returnEngagementForSite($site)
+    function returnEngagementForSite($client,$site)
     {
         return $this->engagementSelect($site, '');
     }
 
     public
-    function returnEngagementForLevel($level)
+    function returnEngagementForLevel($client,$level)
     {
         return $this->engagementSelect('', $level);
     }
 
     public
-    function returnEngagementForSiteAndLevel($site, $level)
+    function returnEngagementForSiteAndLevel($client,$site, $level)
     {
-        return $this->engagementSelect($site, $level);
+        return $this->engagementSelect($client,$site, $level);
     }
 
-    function engagementSelect($site, $level)
+    function engagementSelect($client,$site, $level)
     {
         return DB::select("SELECT description,count(*) as count
 FROM (select round((`1`+`2`+`3`+`4`+`5`+`6`+`7`+`8`+`9`+`10`)/10) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
     }
@@ -464,7 +477,7 @@ order by Engagement_Avg desc;");
     function agreeStronglyAgreeAverageSelect($question, $site)
     {
         return DB::select("SELECT Round((count(`" . $question . "`)/(select count(*) from Equinox.ResultsFinal where (site='" . $site . "' or ''='" . $site . "')))*100) as PercPosResp
-FROM Equinox.ResultsFinal 
+FROM Equinox.ResultsFinal
 where `" . $question . "` in (3,4)
 and (site='" . $site . "' or ''='" . $site . "');");
     }
@@ -622,7 +635,7 @@ and (site='" . $site . "' or ''='" . $site . "');");
 //and site='" . $site . "' or ''='" . $site . "'");
 
         return DB::select("select *
-from 
+from
 (
 Select posCount.Level,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPosResp
 from (select count(*) as TotPosCountForLevel,Level
@@ -640,10 +653,10 @@ select \"Site Positive results\" as Level,Round((count(*)/(select count(*) from 
 from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
 and site='" . $site . "' or ''='" . $site . "') a
-order by 
+order by
 CASE
-WHEN Level='Shopfloor' THEN 1 
- WHEN Level='General_Staff' THEN 2 
+WHEN Level='Shopfloor' THEN 1
+ WHEN Level='General_Staff' THEN 2
   WHEN Level = 'Senior_Staff' THEN 3
  WHEN Level = 'Junior_Management' THEN 4
  WHEN Level = 'Middle_Management' THEN 5
