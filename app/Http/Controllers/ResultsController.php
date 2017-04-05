@@ -33,7 +33,7 @@ class ResultsController extends Controller
             ->get();
     }
 
-    public function returnQuestion($client,$id)
+    public function returnQuestion($client, $id)
     {
         if ($id == '11') {
             return DB::select("SELECT case `11`
@@ -61,7 +61,7 @@ order by `" . $id . "` desc;");
         }
     }
 
-    public function returnQuestionForLevel($client,$id, $level)
+    public function returnQuestionForLevel($client, $id, $level)
     {
         if ($id == '11') {
             return DB::select("SELECT case `11`
@@ -92,7 +92,7 @@ order by `" . $id . "` desc;");
         }
     }
 
-    public function returnQuestionForSite($client,$id, $site)
+    public function returnQuestionForSite($client, $id, $site)
     {
         if ($id == '11') {
             return DB::select("SELECT case `11`
@@ -124,7 +124,7 @@ order by `" . $id . "` desc;");
 
     }
 
-    public function returnQuestionForSiteAndLevel($client,$id, $site, $level)
+    public function returnQuestionForSiteAndLevel($client, $id, $site, $level)
     {
         if ($id == '11') {
             return DB::select("SELECT case `11`
@@ -161,28 +161,28 @@ order by `" . $id . "` desc;");
     public
     function returnEngagement($client)
     {
-        return $this->engagementSelect('', '');
+        return $this->engagementSelect($client,'', '');
     }
 
     public
-    function returnEngagementForSite($client,$site)
+    function returnEngagementForSite($client, $site)
     {
-        return $this->engagementSelect($site, '');
+        return $this->engagementSelect($client,$site, '');
     }
 
     public
-    function returnEngagementForLevel($client,$level)
+    function returnEngagementForLevel($client, $level)
     {
-        return $this->engagementSelect('', $level);
+        return $this->engagementSelect($client,'', $level);
     }
 
     public
-    function returnEngagementForSiteAndLevel($client,$site, $level)
+    function returnEngagementForSiteAndLevel($client, $site, $level)
     {
-        return $this->engagementSelect($client,$site, $level);
+        return $this->engagementSelect($client, $site, $level);
     }
 
-    function engagementSelect($client,$site, $level)
+    function engagementSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
 FROM (select round((`1`+`2`+`3`+`4`+`5`+`6`+`7`+`8`+`9`+`10`)/10) as Engagement_Avg
@@ -195,36 +195,73 @@ order by Engagement_Avg desc;");
     }
 
     public
-    function returnTeamwork()
+    function returnTeamwork($client)
     {
-        return $this->teamworkSelect('', '');
+        return $this->teamworkSelect($client, '', '');
     }
 
     public
-    function returnTeamworkForSite($site)
+    function returnTeamworkForSite($client, $site)
     {
-        return $this->teamworkSelect($site, '');
+        return $this->teamworkSelect($client, $site, '');
     }
 
     public
-    function returnTeamworkForLevel($level)
+    function returnTeamworkForLevel($client, $level)
     {
-        return $this->teamworkSelect('', $level);
+        return $this->teamworkSelect($client, '', $level);
     }
 
     public
-    function returnTeamworkForSiteAndLevel($site, $level)
+    function returnTeamworkForSiteAndLevel($client, $site, $level)
     {
-        return $this->teamworkSelect($site, $level);
+        return $this->teamworkSelect($client, $site, $level);
     }
 
-    function teamworkSelect($site, $level)
+    function teamworkSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
 FROM (select round((`12`+`13`+`14`+`15`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
+group by Engagement_Avg,description
+order by Engagement_Avg desc;");
+    }
+
+    public
+    function returnStrategy($client)
+    {
+        return $this->strategySelect($client, '', '');
+    }
+
+    public
+    function returnStrategyForSite($client, $site)
+    {
+        return $this->strategySelect($client, $site, '');
+    }
+
+    public
+    function returnStrategyForLevel($client, $level)
+    {
+        return $this->strategySelect($client, '', $level);
+    }
+
+    public
+    function returnStrategyForSiteAndLevel($client, $site, $level)
+    {
+        return $this->strategySelect($client, $site, $level);
+    }
+
+    function strategySelect($client, $site, $level)
+    {
+        return DB::select("SELECT description,count(*) as count
+FROM (select round((`16`+`17`+`18`+`19`+`20`+`21`)/6) as Engagement_Avg
+from Equinox.ResultsFinal
+where (Site='" . $site . "' or ''='" . $site . "')
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
     }
@@ -300,143 +337,183 @@ order by Engagement_Avg desc;");
     }
 
     public
-    function returnLeadership()
+    function returnLeadership($client)
     {
-        return $this->leadershipSelect('', '');
+        return $this->leadershipSelect($client, '', '');
     }
 
     public
-    function returnLeadershipForSite($site)
+    function returnLeadershipForSite($client, $site)
     {
-        return $this->leadershipSelect($site, '');
+        return $this->leadershipSelect($client, $site, '');
     }
 
     public
-    function returnLeadershipForLevel($level)
+    function returnLeadershipForLevel($client, $level)
     {
-        return $this->leadershipSelect('', $level);
+        return $this->leadershipSelect($client, '', $level);
     }
 
     public
-    function returnLeadershipForSiteAndLevel($site, $level)
+    function returnLeadershipForSiteAndLevel($client, $site, $level)
     {
-        return $this->leadershipSelect($site, $level);
+        return $this->leadershipSelect($client, $site, $level);
     }
 
-    function leadershipSelect($site, $level)
+    function leadershipSelect($client, $site, $level)
     {
-        return DB::select("SELECT description,count(*) as count
+        if ($client == "sheltam2017") {
+            return DB::select("SELECT description,count(*) as count
+FROM (select round((`22`+`23`+`24`+`25`)/4) as Engagement_Avg
+from Equinox.ResultsFinal
+where (Site='" . $site . "' or ''='" . $site . "')
+and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+group by Engagement_Avg,description
+order by Engagement_Avg desc;");
+        } else {
+            return DB::select("SELECT description,count(*) as count
 FROM (select round((`24`+`25`+`26`+`27`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
+        }
     }
 
     public
-    function returnSuperior()
+    function returnSuperior($client)
     {
-        return $this->superiorSelect('', '');
+        return $this->superiorSelect($client, '', '');
     }
 
     public
-    function returnSuperiorForSite($site)
+    function returnSuperiorForSite($client, $site)
     {
-        return $this->superiorSelect($site, '');
+        return $this->superiorSelect($client, $site, '');
     }
 
     public
-    function returnSuperiorForLevel($level)
+    function returnSuperiorForLevel($client, $level)
     {
-        return $this->superiorSelect('', $level);
+        return $this->superiorSelect($client, '', $level);
     }
 
     public
-    function returnSuperiorForSiteAndLevel($site, $level)
+    function returnSuperiorForSiteAndLevel($client, $site, $level)
     {
-        return $this->superiorSelect($site, $level);
+        return $this->superiorSelect($client, $site, $level);
     }
 
-    function superiorSelect($site, $level)
+    function superiorSelect($client, $site, $level)
     {
-        return DB::select("SELECT description,count(*) as count
+        if ($client == "sheltam2017") {
+            return DB::select("SELECT description,count(*) as count
+FROM (select round((`26`+`27`+`28`+`29`)/4) as Engagement_Avg
+from Equinox.ResultsFinal
+where (Site='" . $site . "' or ''='" . $site . "')
+and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+group by Engagement_Avg,description
+order by Engagement_Avg desc;");
+        } else {
+            return DB::select("SELECT description,count(*) as count
 FROM (select round((`28`+`29`+`30`+`31`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
+        }
     }
 
     public
-    function returnCommunication()
+    function returnCommunication($client)
     {
-        return $this->communicationSelect('', '');
+        return $this->communicationSelect($client, '', '');
     }
 
     public
-    function returnCommunicationForSite($site)
+    function returnCommunicationForSite($client, $site)
     {
-        return $this->communicationSelect($site, '');
+        return $this->communicationSelect($client, $site, '');
     }
 
     public
-    function returnCommunicationForLevel($level)
+    function returnCommunicationForLevel($client, $level)
     {
-        return $this->communicationSelect('', $level);
+        return $this->communicationSelect($client, '', $level);
     }
 
     public
-    function returnCommunicationForSiteAndLevel($site, $level)
+    function returnCommunicationForSiteAndLevel($client, $site, $level)
     {
-        return $this->communicationSelect($site, $level);
+        return $this->communicationSelect($client, $site, $level);
     }
 
-    function communicationSelect($site, $level)
+    function communicationSelect($client, $site, $level)
     {
-        return DB::select("SELECT description,count(*) as count
+        if ($client == "sheltam2017") {
+            return DB::select("SELECT description,count(*) as count
+FROM (select round((`30`+`31`+`32`+`33`)/4) as Engagement_Avg
+from Equinox.ResultsFinal
+where (Site='" . $site . "' or ''='" . $site . "')
+and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+group by Engagement_Avg,description
+order by Engagement_Avg desc;");
+        } else {
+            return DB::select("SELECT description,count(*) as count
 FROM (select round((`32`+`33`+`34`+`35`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
+        }
     }
 
     public
-    function returnLearning()
+    function returnLearning($client)
     {
-        return $this->learningSelect('', '');
+        return $this->learningSelect($client, '', '');
     }
 
     public
-    function returnLearningForSite($site)
+    function returnLearningForSite($client, $site)
     {
-        return $this->learningSelect($site, '');
+        return $this->learningSelect($client, $site, '');
     }
 
     public
-    function returnLearningForLevel($level)
+    function returnLearningForLevel($client, $level)
     {
-        return $this->learningSelect('', $level);
+        return $this->learningSelect($client, '', $level);
     }
 
     public
-    function returnLearningForSiteAndLevel($site, $level)
+    function returnLearningForSiteAndLevel($client, $site, $level)
     {
-        return $this->learningSelect($site, $level);
+        return $this->learningSelect($client, $site, $level);
     }
 
-    function learningSelect($site, $level)
+    function learningSelect($client, $site, $level)
     {
-        return DB::select("SELECT description,count(*) as count
+        if ($client == "sheltam2017") {
+            return DB::select("SELECT description,count(*) as count
+FROM (select round((`34`+`35`+`36`+`37`)/4) as Engagement_Avg
+from Equinox.ResultsFinal
+where (Site='" . $site . "' or ''='" . $site . "')
+and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+group by Engagement_Avg,description
+order by Engagement_Avg desc;");
+        } else {
+            return DB::select("SELECT description,count(*) as count
 FROM (select round((`36`+`37`+`38`+`39`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
+        }
     }
 
     public

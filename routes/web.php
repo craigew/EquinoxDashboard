@@ -58,6 +58,11 @@ Route::get('results/client/{client}/teamwork/site/{site}', 'ResultsController@re
 Route::get('results/client/{client}/teamwork/level/{level}', 'ResultsController@returnTeamworkForLevel');
 Route::get('results/client/{client}/teamwork/site/{site}/level/{level}', 'ResultsController@returnTeamworkForSiteAndLevel');
 
+Route::get('results/client/{client}/strategy', 'ResultsController@returnStrategy');
+Route::get('results/client/{client}/strategy/site/{site}', 'ResultsController@returnStrategyForSite');
+Route::get('results/client/{client}/strategy/level/{level}', 'ResultsController@returnStrategyForLevel');
+Route::get('results/client/{client}/strategy/site/{site}/level/{level}', 'ResultsController@returnStrategyForSiteAndLevel');
+
 Route::get('results/client/{client}/meaning', 'ResultsController@returnMeaning');
 Route::get('results/client/{client}/meaning/site/{site}', 'ResultsController@returnMeaningForSite');
 Route::get('results/client/{client}/meaning/level/{level}', 'ResultsController@returnMeaningForLevel');
