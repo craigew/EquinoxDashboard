@@ -160,17 +160,17 @@
     var url="";
 
     function updateGraph() {
-        url = "http://dashboard.co.za";
-        //        var url = "http://35.167.165.90";
+       // url = "http://dashboard.co.za";
+               url = "http://54.148.248.0:84";
         d3.select("#pie_chart").html("");
         d3.select("#svgdataurl").html("");
 
         if (!isNaN($("#question").val())) {
-            url = url + "/results/question/" + $("#question").val();
+            url = url + "/results/client/sx2017/question/" + $("#question").val();
             console.log("nan" + url);
         }
         else {
-            url = url + "/results/" + $("#question").val();
+            url = url + "/results/client/sx2017/" + $("#question").val();
             console.log("otther" + url);
         }
 
@@ -218,6 +218,7 @@
 
 
         d3.json(url,function (err, data) {
+		console.log(url);
             console.log(url, "error", err);
             console.log(url, "data", data);
             data.forEach(function(d) {

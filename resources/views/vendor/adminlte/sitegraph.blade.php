@@ -153,8 +153,8 @@
         height = 500 - margin.top - margin.bottom;
 
 
-    var domain = "http://dashboard.co.za";
-    //var domain = "http://35.167.165.90"
+    //var domain = "http://dashboard.co.za";
+    var domain = "http://54.148.248.0:84"
 
 
     function populateGraphs() {

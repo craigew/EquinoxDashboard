@@ -403,8 +403,8 @@
             ;
         }
 
-        var domain = "http://dashboard.co.za";
-        //var domain = "http://35.167.165.90"
+        //var domain = "http://dashboard.co.za";
+        var domain = "http://54.148.248.0:84"
 
         var question = 1;
         var url = domain + "/results/levelaverage/site/{{ app('request')->input('site') }}/question/" + question;
