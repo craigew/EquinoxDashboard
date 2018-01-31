@@ -148,6 +148,7 @@
     function updateGraph() {
         //url = "http://dashboard.co.za";
         url = "http://54.148.248.0:84";
+        //url = "http://127.0.0.1:8000";
         d3.select("#pie_chart").html("");
         d3.select("#svgdataurl").html("");
 
@@ -259,10 +260,15 @@
         var legendRectSize = 18;
         var legendSpacing = 4;
 
-        var percentageFormat = d3.format(".0%");
+        var percentageFormat = d3.format(".1%");
 
-        var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c", "#ff7f0e", "rgb(214, 39, 40)"])
-            .domain(["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]);
+        var question = $("#question").val();
+        if (question != 11) {
+            var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c", "#ff7f0e", "rgb(214, 39, 40)"])
+                .domain(["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]);
+        } else {
+            var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c", "#ff7f0e", "rgb(214, 39, 40)"]);
+        }
 
         var arc = d3.arc()
             .outerRadius(radius)

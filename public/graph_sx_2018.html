@@ -5,7 +5,8 @@
     <title>Title</title>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="js/saveSvgAsPng.js"></script>
 
 </head>
@@ -34,7 +35,6 @@
         font-family: Arial;
         font-size: 12px;
     }
-
 
 
 </style>
@@ -156,12 +156,12 @@
 <script>
 
 
-
-    var url="";
+    var url = "";
 
     function updateGraph() {
         // url = "http://dashboard.co.za";
         url = "http://54.148.248.0:84";
+        //url = "http://127.0.0.1:8000";
         d3.select("#pie_chart").html("");
         d3.select("#svgdataurl").html("");
 
@@ -191,7 +191,6 @@
     }
 
 
-
     function updateBarGraph() {
 
         var margin = {top: 20, right: 20, bottom: 330, left: 40};
@@ -216,29 +215,38 @@
                 "translate(" + margin.left + "," + margin.top + ")");
 
 
-
-        d3.json(url,function (err, data) {
+        d3.json(url, function (err, data) {
             console.log(url);
             console.log(url, "error", err);
             console.log(url, "data", data);
-            data.forEach(function(d) {
+            data.forEach(function (d) {
                 d.count = +d.count;
             });
 
             // Scale the range of the data in the domains
-            x.domain(data.map(function(d) { return d.description; }));
-            y.domain([0, d3.max(data, function(d) { return d.count; })]);
+            x.domain(data.map(function (d) {
+                return d.description;
+            }));
+            y.domain([0, d3.max(data, function (d) {
+                return d.count;
+            })]);
 
             // append the rectangles for the bar chart
             svg.selectAll(".bar")
                 .data(data)
                 .enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function(d) { return x(d.description); })
+                .attr("x", function (d) {
+                    return x(d.description);
+                })
                 .attr("width", x.bandwidth())
-                .attr("y", function(d) { return y(d.count); })
-                .attr("height", function(d) { return height - y(d.count); })
-                .style("fill","steelblue");
+                .attr("y", function (d) {
+                    return y(d.count);
+                })
+                .attr("height", function (d) {
+                    return height - y(d.count);
+                })
+                .style("fill", "steelblue");
 
             // add the x Axis
             svg.append("g")
@@ -248,7 +256,8 @@
                 .style("text-anchor", "end")
                 .attr("dx", "-.8em")
                 .attr("dy", ".15em")
-                .attr("transform", "rotate(-90)" );;
+                .attr("transform", "rotate(-90)");
+            ;
 
             // add the y Axis
             svg.append("g")
@@ -265,10 +274,15 @@
         var legendRectSize = 18;
         var legendSpacing = 4;
 
-        var percentageFormat = d3.format(".0%");
+        var percentageFormat = d3.format(".1%");
 
-        var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c", "#ff7f0e", "rgb(214, 39, 40)"])
-            .domain(["Strongly Agree","Agree","Disagree","Strongly Disagree"]);
+        var question = $("#question").val();
+        if (question != 11) {
+            var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c", "#ff7f0e", "rgb(214, 39, 40)"])
+                .domain(["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]);
+        } else {
+            var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c", "#ff7f0e", "rgb(214, 39, 40)"]);
+        }
 
         var arc = d3.arc()
             .outerRadius(radius)
@@ -277,7 +291,6 @@
         var labelArc = d3.arc()
             .outerRadius(radius - 40)
             .innerRadius(radius - 40);
-
 
 
         d3.json(url, function (err, data) {

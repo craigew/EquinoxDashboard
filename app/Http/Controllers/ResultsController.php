@@ -35,7 +35,7 @@ class ResultsController extends Controller
 
     public function returnQuestion($client, $id)
     {
-        if ($client == "sx2017" and $id == '11') {
+        if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -47,17 +47,20 @@ FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if ($client == "sx2017" and $id == '44') {
+        }
+        else if ($client == "sx2017" || $client == "sx2018" and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
 group by `44`;");
-        } else if ($client == "sheltam2017" and $id == '38') {
+        }
+        else if ($client == "sheltam2017" and $id == '38') {
             return DB::select("select `38` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
 group by `38`;");
-        } else {
+        }
+        else {
             return DB::select("SELECT description,count(*) as count
 FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
 where Engagement='" . $client . "'
@@ -68,7 +71,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForLevel($client, $id, $level)
     {
-        if ($client == "sx2017" and $id == '11') {
+        if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -81,7 +84,7 @@ where Level='" . $level . "'
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if ($client == "sx2017" and $id == '44') {
+        } else if ($client == "sx2017" || $client == "sx2018" and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Level='" . $level . "'
@@ -106,7 +109,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSite($client, $id, $site)
     {
-        if ($client == "sx2017" and $id == '11') {
+        if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -119,7 +122,7 @@ where Site='" . $site . "'
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if ($client == "sx2017" and $id == '44') {
+        } else if ($client == "sx2017" || $client == "sx2018" and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'
@@ -144,7 +147,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSiteAndLevel($client, $id, $site, $level)
     {
-        if ($client == "sx2017" and $id == '11') {
+        if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -158,7 +161,7 @@ and Level='" . $level . "'
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if ($client == "sx2017" and $id == '44') {
+        } else if ($client == "sx2017" || $client == "sx2018" and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'
@@ -181,6 +184,18 @@ and Engagement='" . $client . "'
 group by `" . $id . "`,description
 order by `" . $id . "` desc;");
         }
+    }
+
+
+    /* Survey Result Comparison - Added by Alicea Jonck 30/01/18 */
+
+    /* If Site and Level results are set to ALL */
+    public function resultComparisonQuestion($id)
+    {
+        return DB::select("SELECT description,count(*) as count
+        FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
+        group by `" . $id . "`,description, Engagement
+        order by `" . $id . "` desc;");
     }
 
     public
