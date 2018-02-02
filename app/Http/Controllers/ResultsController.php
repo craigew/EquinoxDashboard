@@ -35,7 +35,6 @@ class ResultsController extends Controller
 
     public function returnQuestion($client, $id)
     {
-        error_log("Question Meaning #4".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -69,7 +68,6 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForLevel($client, $id, $level)
     {
-        error_log("Question Meaning #3".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -108,7 +106,6 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSite($client, $id, $site)
     {
-        error_log("Question Meaning #1".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -147,7 +144,6 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSiteAndLevel($client, $id, $site, $level)
     {
-        error_log("Question Meaning #2".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -740,8 +736,6 @@ and (site='" . $site . "' or ''='" . $site . "');");
     function averageResultComparison($question)
     {
         $siteData = $this->resultComparisonQuestion($question);
-
-        error_log("Result site data".var_export($siteData,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
 
         $results = array();
         for ($i = 0; $i <= 3; $i++) {
