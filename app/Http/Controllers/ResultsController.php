@@ -35,6 +35,7 @@ class ResultsController extends Controller
 
     public function returnQuestion($client, $id)
     {
+        error_log("Question Meaning #4".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -47,20 +48,17 @@ FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        }
-        else if ($client == "sx2017" || $client == "sx2018" and $id == '44') {
+        } else if ($client == "sx2017" || $client == "sx2018" and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
 group by `44`;");
-        }
-        else if ($client == "sheltam2017" and $id == '38') {
+        } else if ($client == "sheltam2017" and $id == '38') {
             return DB::select("select `38` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
 group by `38`;");
-        }
-        else {
+        } else {
             return DB::select("SELECT description,count(*) as count
 FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
 where Engagement='" . $client . "'
@@ -71,6 +69,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForLevel($client, $id, $level)
     {
+        error_log("Question Meaning #3".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -109,6 +108,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSite($client, $id, $site)
     {
+        error_log("Question Meaning #1".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -147,6 +147,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSiteAndLevel($client, $id, $site, $level)
     {
+        error_log("Question Meaning #2".var_export($id,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
         if ($client == "sx2017" || $client == "sx2018" and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
@@ -184,18 +185,6 @@ and Engagement='" . $client . "'
 group by `" . $id . "`,description
 order by `" . $id . "` desc;");
         }
-    }
-
-
-    /* Survey Result Comparison - Added by Alicea Jonck 30/01/18 */
-
-    /* If Site and Level results are set to ALL */
-    public function resultComparisonQuestion($id)
-    {
-        return DB::select("SELECT description,count(*) as count
-        FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "`=id
-        group by `" . $id . "`,description, Engagement
-        order by `" . $id . "` desc;");
     }
 
     public
@@ -309,28 +298,28 @@ order by Engagement_Avg desc;");
     public
     function returnMeaning()
     {
-        return $this->meaningSelect('', '');
+        return $this->meaningSelect('', '', '');
     }
 
     public
-    function returnMeaningForSite($site)
+    function returnMeaningForSite($client, $site)
     {
-        return $this->meaningSelect($site, '');
+        return $this->meaningSelect('',$site, '');
     }
 
     public
-    function returnMeaningForLevel($level)
+    function returnMeaningForLevel($client,$level)
     {
-        return $this->meaningSelect('', $level);
+        return $this->meaningSelect('', '', $level);
     }
 
     public
-    function returnMeaningForSiteAndLevel($site, $level)
+    function returnMeaningForSiteAndLevel($client,$site, $level)
     {
-        return $this->meaningSelect($site, $level);
+        return $this->meaningSelect('',$site, $level);
     }
 
-    function meaningSelect($site, $level)
+    function meaningSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
 FROM (select round((`16`+`17`+`18`+`19`)/4) as Engagement_Avg
@@ -344,28 +333,28 @@ order by Engagement_Avg desc;");
     public
     function returnRecognition()
     {
-        return $this->recognitionSelect('', '');
+        return $this->recognitionSelect('', '', '');
     }
 
     public
-    function returnRecognitionForSite($site)
+    function returnRecognitionForSite($client, $site)
     {
-        return $this->recognitionSelect($site, '');
+        return $this->recognitionSelect('',$site, '');
     }
 
     public
-    function returnRecognitionForLevel($level)
+    function returnRecognitionForLevel($client, $level)
     {
-        return $this->recognitionSelect('', $level);
+        return $this->recognitionSelect('','', $level);
     }
 
     public
-    function returnRecognitionForSiteAndLevel($site, $level)
+    function returnRecognitionForSiteAndLevel($client, $site, $level)
     {
-        return $this->recognitionSelect($site, $level);
+        return $this->recognitionSelect('',$site, $level);
     }
 
-    function recognitionSelect($site, $level)
+    function recognitionSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
 FROM (select round((`20`+`21`+`22`+`23`)/4) as Engagement_Avg
@@ -559,28 +548,28 @@ order by Engagement_Avg desc;");
     public
     function returnJob()
     {
-        return $this->jobSelect('', '');
+        return $this->jobSelect('','', '');
     }
 
     public
-    function returnJobForSite($site)
+    function returnJobForSite($client, $site)
     {
-        return $this->jobSelect($site, '');
+        return $this->jobSelect('',$site, '');
     }
 
     public
-    function returnJobForLevel($level)
+    function returnJobForLevel($client, $level)
     {
-        return $this->jobSelect('', $level);
+        return $this->jobSelect('','', $level);
     }
 
     public
-    function returnJobForSiteAndLevel($site, $level)
+    function returnJobForSiteAndLevel($client, $site, $level)
     {
-        return $this->jobSelect($site, $level);
+        return $this->jobSelect('',$site, $level);
     }
 
-    function jobSelect($site, $level)
+    function jobSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
 FROM (select round((`40`+`41`+`42`+`43`)/4) as Engagement_Avg
@@ -597,6 +586,22 @@ order by Engagement_Avg desc;");
 FROM Equinox.ResultsFinal
 where `" . $question . "` in (3,4)
 and (site='" . $site . "' or ''='" . $site . "');");
+    }
+
+    function resultComparisonQuestion($id)
+    {
+        return DB::select("select SX2017.description,SX2017Count,SX2018Count from
+(SELECT description, count(*) as SX2017Count, Engagement
+        FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "` =id
+        where Engagement='SX2017'
+        group by `" . $id . "`,description, Engagement
+        order by `" . $id . "` desc) as SX2017 inner
+ join (SELECT description, count(*) as SX2018Count, Engagement
+        FROM Equinox.ResultsFinal inner join Equinox.labels on `" . $id . "` =id
+        where Engagement='SX2018'
+        group by `" . $id . "`,description, Engagement
+        order by `" . $id . "` desc) as SX2018
+        ON SX2017.description=SX2018.description;");
     }
 
     public function returnAverageDataForEngagement($site)
@@ -730,6 +735,24 @@ and (site='" . $site . "' or ''='" . $site . "');");
         return array("Name" => $question,
             $site => $siteData[0]->PercPosResp,
             "Shatterpruffe" => $sx[0]->PercPosResp);
+    }
+
+    function averageResultComparison($question)
+    {
+        $siteData = $this->resultComparisonQuestion($question);
+
+        error_log("Result site data".var_export($siteData,1),"3", "/home/alicea/Desktop/Documents/error_log2.txt");
+
+        $results = array();
+        for ($i = 0; $i <= 3; $i++) {
+            array_push($results, [
+                "Name" => $siteData[$i]->description,
+                "SX2017" => $siteData[$i]->SX2017Count,
+                "SX2018" => $siteData[$i]->SX2018Count
+            ]);
+        }
+
+        return $results;
     }
 
     public function returnAverageDataForLevels($site, $question)
