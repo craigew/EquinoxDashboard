@@ -48,6 +48,57 @@ Route::get('results/client/{client}/question/{id}/site/{site}', 'ResultsControll
 Route::get('results/client/{client}/question/{id}/level/{level}', 'ResultsController@returnQuestionForLevel');
 Route::get('results/client/{client}/question/{id}/site/{site}/level/{level}', 'ResultsController@returnQuestionForSiteAndLevel');
 
+/* Result Comparison */
+Route::get('results/question/{id}', 'ResultsController@averageComparisonQuestion');
+Route::get('results/question/{id}/level/{level}', 'ResultsController@averageComparisonLevel');
+Route::get('results/question/{id}/site/{site}', 'ResultsController@averageComparisonSite');
+Route::get('results/question/{id}/site/{site}/level/{level}', 'ResultsController@averageComparisonSiteAndLevel');
+
+Route::get('results/comparison/question/engagement', 'ResultsController@averageComparisonEngagement');
+Route::get('results/comparison/question/engagement/site/{site}', 'ResultsController@averageComparisonEngagementSite');
+Route::get('results/comparison/question/engagement/level/{level}', 'ResultsController@averageComparisonEngagementLevel');
+Route::get('results/comparison/question/engagement/site/{site}/level/{level}', 'ResultsController@averageComparisonEngagementSiteAndLevel');
+
+Route::get('results/comparison/question/teamwork', 'ResultsController@averageComparisonTeamwork');
+Route::get('results/comparison/question/teamwork/site/{site}', 'ResultsController@averageComparisonTeamworkSite');
+Route::get('results/comparison/question/teamwork/level/{level}', 'ResultsController@averageComparisonTeamworkLevel');
+Route::get('results/comparison/question/teamwork/site/{site}/level/{level}', 'ResultsController@averageComparisonTeamworkSiteAndLevel');
+
+Route::get('results/comparison/question/meaning', 'ResultsController@averageComparisonMeaning');
+Route::get('results/comparison/question/meaning/site/{site}', 'ResultsController@averageComparisonMeaningSite');
+Route::get('results/comparison/question/meaning/level/{level}', 'ResultsController@averageComparisonMeaningLevel');
+Route::get('results/comparison/question/meaning/site/{site}/level/{level}', 'ResultsController@averageComparisonMeaningSiteAndLevel');
+
+Route::get('results/comparison/question/recognition', 'ResultsController@averageComparisonRecognition');
+Route::get('results/comparison/question/recognition/site/{site}', 'ResultsController@averageComparisonRecognitionSite');
+Route::get('results/comparison/question/recognition/level/{level}', 'ResultsController@averageComparisonRecognitionLevel');
+Route::get('results/comparison/question/recognition/site/{site}/level/{level}', 'ResultsController@averageComparisonRecognitionSiteAndLevel');
+
+Route::get('results/comparison/question/superior', 'ResultsController@averageComparisonSuperior');
+Route::get('results/comparison/question/superior/site/{site}', 'ResultsController@averageComparisonSuperiorSite');
+Route::get('results/comparison/question/superior/level/{level}', 'ResultsController@averageComparisonSuperiorLevel');
+Route::get('results/comparison/question/superior/site/{site}/level/{level}', 'ResultsController@averageComparisonSuperiorSiteAndLevel');
+
+Route::get('results/comparison/question/leadership', 'ResultsController@averageComparisonLeadership');
+Route::get('results/comparison/question/leadership/site/{site}', 'ResultsController@averageComparisonLeadershipSite');
+Route::get('results/comparison/question/leadership/level/{level}', 'ResultsController@averageComparisonLeadershipLevel');
+Route::get('results/comparison/question/leadership/site/{site}/level/{level}', 'ResultsController@averageComparisonLeadershipSiteAndLevel');
+
+Route::get('results/comparison/question/communication', 'ResultsController@averageComparisonCommunication');
+Route::get('results/comparison/question/communication/site/{site}', 'ResultsController@averageComparisonCommunicationSite');
+Route::get('results/comparison/question/communication/level/{level}', 'ResultsController@averageComparisonCommunicationLevel');
+Route::get('results/comparison/question/communication/site/{site}/level/{level}', 'ResultsController@averageComparisonCommunicationSiteAndLevel');
+
+Route::get('results/comparison/question/learning', 'ResultsController@averageComparisonLeaning');
+Route::get('results/comparison/question/learning/site/{site}', 'ResultsController@averageComparisonLeaningSite');
+Route::get('results/comparison/question/learning/level/{level}', 'ResultsController@averageComparisonLeaningLevel');
+Route::get('results/comparison/question/learning/site/{site}/level/{level}', 'ResultsController@averageComparisonLeaningSiteAndLevel');
+
+Route::get('results/comparison/question/job', 'ResultsController@averageComparisonJob');
+Route::get('results/comparison/question/job/site/{site}', 'ResultsController@averageComparisonJobSite');
+Route::get('results/comparison/question/job/level/{level}', 'ResultsController@averageComparisonJobLevel');
+Route::get('results/comparison/question/job/site/{site}/level/{level}', 'ResultsController@averageComparisonJobSiteAndLevel');
+
 Route::get('results/client/{client}/engagement', 'ResultsController@returnEngagement');
 Route::get('results/client/{client}/engagement/site/{site}', 'ResultsController@returnEngagementForSite');
 Route::get('results/client/{client}/engagement/level/{level}', 'ResultsController@returnEngagementForLevel');

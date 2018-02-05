@@ -120,6 +120,7 @@
             populateGraphs($("#site option:selected").text());
         });
 
+        debugger;
         populateGraphs();
     });
 
@@ -154,7 +155,8 @@
 
 
     //var domain = "http://dashboard.co.za";
-    var domain = "http://54.148.248.0:84"
+    var domain = "http://54.148.248.0:84";
+    //var domain = "http://127.0.0.1:8000";
 
 
     function populateGraphs() {
