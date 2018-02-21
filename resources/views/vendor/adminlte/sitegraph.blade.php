@@ -12,6 +12,22 @@
 
 @section('main-content')
 <div class="container-fluid spark-screen">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-6">
+                <label class="col-sm-1">Year</label>
+                <select id="engagement" class="col-sm-3 pl6 ptb1" style="padding-top:  1px; padding-bottom:  1px; padding-left:  6px">
+                    {{--<option value="All" disabled selected>Select an option</option>--}}
+                    <option value="SX2017">2016</option>
+                    <option value="SX2018">2017</option>
+                </select>
+                <br/>
+                <button type="button" id="btnQuery" style="margin-top: 10px; margin-bottom: 10px">Update Graphs</button>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <div id="Engagement"></div>
@@ -117,10 +133,9 @@
 
     $(document).ready(function () {
         $("#btnQuery").click(function () {
-            populateGraphs($("#site option:selected").text());
+            populateGraphs();
         });
 
-        debugger;
         populateGraphs();
     });
 
@@ -155,53 +170,66 @@
 
 
     //var domain = "http://dashboard.co.za";
-    var domain = "http://54.148.248.0:84";
-    //var domain = "http://127.0.0.1:8000";
+    //var domain = "http://54.148.248.0:84";
+    var domain = "http://127.0.0.1:8000";
 
 
     function populateGraphs() {
-        var site='{{ app('request')->input('site') }}'
-        var url = domain + "/results/average/engagement/" + site;
+        var site='{{ app('request')->input('site') }}';
+        var engagement = $('#engagement').val();
+
+        var url = domain + "/results/average/engagement/" + site + "/year/" + engagement + "";
+        console.log("nan" + url);
+        //var url = domain + "/results/average/engagement/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Engagement");
         });
 
-        url = domain + "/results/average/teamwork/" + site;
+        url = domain + "/results/average/teamwork/" + site + "/year/" + engagement + "";
+        //url = domain + "/results/average/teamwork/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Teamwork");
         });
 
-        url = domain + "/results/average/meaning/" + site;
+        url = domain + "/results/average/meaning/" + site + "/year/" + engagement + "";
+        console.log("nan" + url);
+        //url = domain + "/results/average/meaning/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Meaning");
         });
 
-        url = domain + "/results/average/recognition/" + site;
+        url = domain + "/results/average/recognition/" + site + "/year/" + engagement + "";
+        //url = domain + "/results/average/recognition/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Recognition");
         });
 
-        url = domain + "/results/average/leadership/" + site;
+        url = domain + "/results/average/leadership/" + site + "/year/" + engagement + "";
+        //url = domain + "/results/average/leadership/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Leadership");
         });
 
-        url = domain + "/results/average/superior/" + site;
+        url = domain + "/results/average/superior/" + site + "/year/" + engagement + "";
+        //url = domain + "/results/average/superior/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Superior");
         });
 
-        url = domain + "/results/average/communication/" + site;
+        url = domain + "/results/average/communication/" + site + "/year/" + engagement + "";
+        //url = domain + "/results/average/communication/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Communication");
         });
 
-        url = domain + "/results/average/learning/" + site;
+        url = domain + "/results/average/learning/" + site + "/year/" + engagement + "";
+        //url = domain + "/results/average/learning/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Learning");
         });
 
-        url = domain + "/results/average/job/" + site;
+        url = domain + "/results/average/job/" + site + "/year/" + engagement + "";
+        //url = domain + "/results/average/job/" + site;
         d3.json(url, function (err, data) {
             buildGraph(data, "Job");
         });
@@ -361,6 +389,8 @@
 
 </script>
 @endsection
+
+
 
 
 

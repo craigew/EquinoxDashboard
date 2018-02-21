@@ -576,141 +576,142 @@ group by Engagement_Avg,description
 order by Engagement_Avg desc;");
     }
 
-    function agreeStronglyAgreeAverageSelect($question, $site)
+    function agreeStronglyAgreeAverageSelect($question, $site, $year)
     {
         return DB::select("SELECT Round((count(`" . $question . "`)/(select count(*) from Equinox.ResultsFinal where (site='" . $site . "' or ''='" . $site . "')))*100) as PercPosResp
 FROM Equinox.ResultsFinal
 where `" . $question . "` in (3,4)
+and Engagement = '" . $year . "'
 and (site='" . $site . "' or ''='" . $site . "');");
     }
 
-    public function returnAverageDataForEngagement($site)
+    public function returnAverageDataForEngagement($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '10'),
-            $this->createAverageDataForEngagementNode($site, '9'),
-            $this->createAverageDataForEngagementNode($site, '8'),
-            $this->createAverageDataForEngagementNode($site, '7'),
-            $this->createAverageDataForEngagementNode($site, '6'),
-            $this->createAverageDataForEngagementNode($site, '5'),
-            $this->createAverageDataForEngagementNode($site, '4'),
-            $this->createAverageDataForEngagementNode($site, '3'),
-            $this->createAverageDataForEngagementNode($site, '2'),
-            $this->createAverageDataForEngagementNode($site, '1'),
+            $this->createAverageDataForEngagementNode($site, '10', $year),
+            $this->createAverageDataForEngagementNode($site, '9', $year),
+            $this->createAverageDataForEngagementNode($site, '8', $year),
+            $this->createAverageDataForEngagementNode($site, '7', $year),
+            $this->createAverageDataForEngagementNode($site, '6', $year),
+            $this->createAverageDataForEngagementNode($site, '5', $year),
+            $this->createAverageDataForEngagementNode($site, '4', $year),
+            $this->createAverageDataForEngagementNode($site, '3', $year),
+            $this->createAverageDataForEngagementNode($site, '2', $year),
+            $this->createAverageDataForEngagementNode($site, '1', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForTeamwork($site)
+    public function returnAverageDataForTeamwork($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '15'),
-            $this->createAverageDataForEngagementNode($site, '14'),
-            $this->createAverageDataForEngagementNode($site, '13'),
-            $this->createAverageDataForEngagementNode($site, '12'),
+            $this->createAverageDataForEngagementNode($site, '15', $year),
+            $this->createAverageDataForEngagementNode($site, '14', $year),
+            $this->createAverageDataForEngagementNode($site, '13', $year),
+            $this->createAverageDataForEngagementNode($site, '12', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForMeaning($site)
+    public function returnAverageDataForMeaning($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '19'),
-            $this->createAverageDataForEngagementNode($site, '18'),
-            $this->createAverageDataForEngagementNode($site, '17'),
-            $this->createAverageDataForEngagementNode($site, '16'),
+            $this->createAverageDataForEngagementNode($site, '19', $year),
+            $this->createAverageDataForEngagementNode($site, '18', $year),
+            $this->createAverageDataForEngagementNode($site, '17', $year),
+            $this->createAverageDataForEngagementNode($site, '16', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForRecognition($site)
+    public function returnAverageDataForRecognition($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '23'),
-            $this->createAverageDataForEngagementNode($site, '22'),
-            $this->createAverageDataForEngagementNode($site, '21'),
-            $this->createAverageDataForEngagementNode($site, '20'),
+            $this->createAverageDataForEngagementNode($site, '23', $year),
+            $this->createAverageDataForEngagementNode($site, '22', $year),
+            $this->createAverageDataForEngagementNode($site, '21', $year),
+            $this->createAverageDataForEngagementNode($site, '20', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForLeadership($site)
+    public function returnAverageDataForLeadership($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '27'),
-            $this->createAverageDataForEngagementNode($site, '26'),
-            $this->createAverageDataForEngagementNode($site, '25'),
-            $this->createAverageDataForEngagementNode($site, '24'),
+            $this->createAverageDataForEngagementNode($site, '27', $year),
+            $this->createAverageDataForEngagementNode($site, '26', $year),
+            $this->createAverageDataForEngagementNode($site, '25', $year),
+            $this->createAverageDataForEngagementNode($site, '24', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForSuperior($site)
+    public function returnAverageDataForSuperior($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '31'),
-            $this->createAverageDataForEngagementNode($site, '30'),
-            $this->createAverageDataForEngagementNode($site, '29'),
-            $this->createAverageDataForEngagementNode($site, '28'),
+            $this->createAverageDataForEngagementNode($site, '31', $year),
+            $this->createAverageDataForEngagementNode($site, '30', $year),
+            $this->createAverageDataForEngagementNode($site, '29', $year),
+            $this->createAverageDataForEngagementNode($site, '28', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForCommunication($site)
+    public function returnAverageDataForCommunication($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '35'),
-            $this->createAverageDataForEngagementNode($site, '34'),
-            $this->createAverageDataForEngagementNode($site, '33'),
-            $this->createAverageDataForEngagementNode($site, '32'),
+            $this->createAverageDataForEngagementNode($site, '35', $year),
+            $this->createAverageDataForEngagementNode($site, '34', $year),
+            $this->createAverageDataForEngagementNode($site, '33', $year),
+            $this->createAverageDataForEngagementNode($site, '32', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForLearning($site)
+    public function returnAverageDataForLearning($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '39'),
-            $this->createAverageDataForEngagementNode($site, '38'),
-            $this->createAverageDataForEngagementNode($site, '37'),
-            $this->createAverageDataForEngagementNode($site, '36'),
+            $this->createAverageDataForEngagementNode($site, '39', $year),
+            $this->createAverageDataForEngagementNode($site, '38', $year),
+            $this->createAverageDataForEngagementNode($site, '37', $year),
+            $this->createAverageDataForEngagementNode($site, '36', $year),
         );
 
         return json_encode($data);
 
     }
 
-    public function returnAverageDataForJob($site)
+    public function returnAverageDataForJob($site, $year)
     {
         $data = array(
-            $this->createAverageDataForEngagementNode($site, '43'),
-            $this->createAverageDataForEngagementNode($site, '42'),
-            $this->createAverageDataForEngagementNode($site, '41'),
-            $this->createAverageDataForEngagementNode($site, '40'),
+            $this->createAverageDataForEngagementNode($site, '43', $year),
+            $this->createAverageDataForEngagementNode($site, '42', $year),
+            $this->createAverageDataForEngagementNode($site, '41', $year),
+            $this->createAverageDataForEngagementNode($site, '40', $year),
         );
 
         return json_encode($data);
 
     }
 
-    function createAverageDataForEngagementNode($site, $question)
+    function createAverageDataForEngagementNode($site, $question, $year)
     {
-        $siteData = $this->agreeStronglyAgreeAverageSelect($question, $site);
-        $sx = $this->agreeStronglyAgreeAverageSelect($question, '');
+        $siteData = $this->agreeStronglyAgreeAverageSelect($question, $site, $year);
+        $sx = $this->agreeStronglyAgreeAverageSelect($question, '', $year);
 
         return array("Name" => $question,
             $site => $siteData[0]->PercPosResp,
@@ -1468,7 +1469,6 @@ ON SX2017.description=SX2018.description;");
     }
 
 
-
     /* Result Comparison Results Returned */
     function averageComparisonQuestion($question)
     {
@@ -1849,7 +1849,7 @@ ON SX2017.description=SX2018.description;");
         return $results;
     }
 
-    function averageComparisonLeadershipSite( $site)
+    function averageComparisonLeadershipSite($site)
     {
         $siteData = $this->resultComparisonLeadership($site, '');
 
@@ -1867,7 +1867,7 @@ ON SX2017.description=SX2018.description;");
         return $results;
     }
 
-    function averageComparisonLeadershipLevel( $level)
+    function averageComparisonLeadershipLevel($level)
     {
         $siteData = $this->resultComparisonLeadership('', $level);
 
@@ -1885,7 +1885,7 @@ ON SX2017.description=SX2018.description;");
         return $results;
     }
 
-    function averageComparisonLeadershipSiteAndLevel( $site, $level)
+    function averageComparisonLeadershipSiteAndLevel($site, $level)
     {
         $siteData = $this->resultComparisonLeadership($site, $level);
 

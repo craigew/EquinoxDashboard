@@ -149,15 +149,15 @@ Route::get('results/client/{client}/job/site/{site}', 'ResultsController@returnJ
 Route::get('results/client/{client}/job/level/{level}', 'ResultsController@returnJobForLevel');
 Route::get('results/client/{client}/job/site/{site}/level/{level}', 'ResultsController@returnJobForSiteAndLevel');
 
-Route::get('results/average/engagement/{site}', 'ResultsController@returnAverageDataForEngagement');
-Route::get('results/average/teamwork/{site}', 'ResultsController@returnAverageDataForTeamwork');
-Route::get('results/average/meaning/{site}', 'ResultsController@returnAverageDataForMeaning');
-Route::get('results/average/recognition/{site}', 'ResultsController@returnAverageDataForRecognition');
-Route::get('results/average/leadership/{site}', 'ResultsController@returnAverageDataForLeadership');
-Route::get('results/average/superior/{site}', 'ResultsController@returnAverageDataForSuperior');
-Route::get('results/average/communication/{site}', 'ResultsController@returnAverageDataForCommunication');
-Route::get('results/average/learning/{site}', 'ResultsController@returnAverageDataForLearning');
-Route::get('results/average/job/{site}', 'ResultsController@returnAverageDataForJob');
+Route::get('results/average/engagement/{site}/year/{year}', 'ResultsController@returnAverageDataForEngagement');
+Route::get('results/average/teamwork/{site}/year/{year}', 'ResultsController@returnAverageDataForTeamwork');
+Route::get('results/average/meaning/{site}/year/{year}', 'ResultsController@returnAverageDataForMeaning');
+Route::get('results/average/recognition/{site}/year/{year}', 'ResultsController@returnAverageDataForRecognition');
+Route::get('results/average/leadership/{site}/year/{year}', 'ResultsController@returnAverageDataForLeadership');
+Route::get('results/average/superior/{site}/year/{year}', 'ResultsController@returnAverageDataForSuperior');
+Route::get('results/average/communication/{site}/year/{year}', 'ResultsController@returnAverageDataForCommunication');
+Route::get('results/average/learning/{site}/year/{year}', 'ResultsController@returnAverageDataForLearning');
+Route::get('results/average/job/{site}/year/{year}', 'ResultsController@returnAverageDataForJob');
 
 Route::get('results/levelaverage/site/{site}/question/{question}', 'ResultsController@returnAverageDataForLevels');
 
