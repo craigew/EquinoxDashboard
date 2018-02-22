@@ -752,7 +752,7 @@ from Equinox.ResultsFinal a
 where (site='" . $site . "' or ''='" . $site . "')
 and Engagement = '" . $year . "'
 group by Level
-having TotCountForLevel > 2) totCount
+having count(*)) > 2) totCount
 where posCount.Level=totCount.Level
 union
 select \"Site Positive results\" as Level,Round((count(*)/(select count(*) from Equinox.ResultsFinal where (site='" . $site . "' or ''='" . $site . "') and Engagement = '" . $year . "'))*100) sitePerc
