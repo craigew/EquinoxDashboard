@@ -159,6 +159,6 @@ Route::get('results/average/communication/{site}/year/{year}', 'ResultsControlle
 Route::get('results/average/learning/{site}/year/{year}', 'ResultsController@returnAverageDataForLearning');
 Route::get('results/average/job/{site}/year/{year}', 'ResultsController@returnAverageDataForJob');
 
-Route::get('results/levelaverage/site/{site}/question/{question}', 'ResultsController@returnAverageDataForLevels');
+Route::get('results/levelaverage/site/{site}/question/{question}/year/{year}', 'ResultsController@returnAverageDataForLevels');
 
-Route::get('results/siteaverage/level/{level}/question/{question}', 'ResultsController@returnAverageDataForSites');
+Route::get('results/siteaverage/level/{level}/question/{question}/year/{year}', 'ResultsController@returnAverageDataForSites');

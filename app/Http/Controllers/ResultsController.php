@@ -718,7 +718,7 @@ and (site='" . $site . "' or ''='" . $site . "');");
             "Shatterpruffe" => $sx[0]->PercPosResp);
     }
 
-    public function returnAverageDataForLevels($site, $question)
+    public function returnAverageDataForLevels($site, $question, $year)
     {
 //        return DB::select("Select posCount.Level,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPosResp
 //from (select count(*) as TotPosCountForLevel,Level
@@ -744,18 +744,22 @@ Select posCount.Level,Round((TotPosCountForLevel/TotCountForLevel)*100) as PerPo
 from (select count(*) as TotPosCountForLevel,Level
 from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
-and site='" . $site . "' or ''='" . $site . "'
+and (site='" . $site . "' or ''='" . $site . "')
+and Engagement = '" . $year . "'
 group by Level) posCount,
 (select count(*) as TotCountForLevel,Level
 from Equinox.ResultsFinal a
-where site='" . $site . "' or ''='" . $site . "'
-group by Level) totCount
+where (site='" . $site . "' or ''='" . $site . "')
+and Engagement = '" . $year . "'
+group by Level
+having TotCountForLevel > 2) totCount
 where posCount.Level=totCount.Level
 union
-select \"Site Positive results\" as Level,Round((count(*)/(select count(*) from Equinox.ResultsFinal where site='" . $site . "' or ''='" . $site . "'))*100) sitePerc
+select \"Site Positive results\" as Level,Round((count(*)/(select count(*) from Equinox.ResultsFinal where (site='" . $site . "' or ''='" . $site . "') and Engagement = '" . $year . "'))*100) sitePerc
 from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
-and site='" . $site . "' or ''='" . $site . "') a
+and Engagement = '" . $year . "'
+and (site='" . $site . "' or ''='" . $site . "')) a
 order by
 CASE
 WHEN Level='Shopfloor' THEN 1
@@ -769,7 +773,7 @@ END");
 
     }
 
-    public function returnAverageDataForSites($level, $question)
+    public function returnAverageDataForSites($level, $question, $year)
     {
 //        return DB::select("SELECT Site,round(avg(`1`),2) as average
 //FROM Equinox.ResultsFinal
@@ -786,18 +790,22 @@ END");
 from (select count(*) as TotPosCountForLevel,Site
 from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
-and Level='" . $level . "' or ''='" . $level . "'
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement = '" . $year . "'
 group by Site) posCount,
 (select count(*) as TotCountForLevel,Site
 from Equinox.ResultsFinal a
-where Level='" . $level . "' or ''='" . $level . "'
-group by Site) totCount
+where (Level='" . $level . "' or ''='" . $level . "')
+and Engagement = '" . $year . "'
+group by Site
+having TotCountForLevel > 2) totCount
 where posCount.Site=totCount.Site
 union
-select \"Level Positive results\" as Site,Round((count(*)/(select count(*) from Equinox.ResultsFinal where Level='" . $level . "' or ''='" . $level . "'))*100) sitePerc
+select \"Level Positive results\" as Site,Round((count(*)/(select count(*) from Equinox.ResultsFinal where (Level='" . $level . "' or ''='" . $level . "') and Engagement = '" . $year . "'))*100) sitePerc
 from Equinox.ResultsFinal a
 where `" . $question . "` in (3,4)
-and Level='" . $level . "' or ''='" . $level . "'");
+and Engagement = '" . $year . "'
+and (Level='" . $level . "' or ''='" . $level . "')");
     }
 
     /* Result Comparison Functions */

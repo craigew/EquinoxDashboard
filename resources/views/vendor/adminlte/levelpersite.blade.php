@@ -11,6 +11,24 @@
 @section('main-content')
 
 <div class="container-fluid spark-screen">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-6">
+                <label class="col-sm-1">Year</label>
+                <select id="engagement" class="col-sm-3 pl6 ptb1"
+                        style="padding-top:  1px; padding-bottom:  1px; padding-left:  6px">
+                    {{--<option value="All" disabled selected>Select an option</option>--}}
+                    <option value="SX2017">2016</option>
+                    <option value="SX2018">2017</option>
+                </select>
+                <br/>
+                <button type="button" id="btnQuery" style="margin-top: 10px; margin-bottom: 10px">Update Graphs
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <div id="question1"></div>
@@ -229,6 +247,17 @@
     </div>
 
     <script>
+        $(document).ready(function () {
+            $("#btnQuery").click(function () {
+                var s = d3.selectAll('svg');
+                s = s.remove();
+                s = d3.selectAll('svg');
+                updateGraph();
+            });
+
+            updateGraph();
+        });
+
         function verticalWrap(text, width) {
             text.each(function () {
                 var text = d3.select(this),
@@ -400,237 +429,314 @@
         }
 
         //var domain = "http://dashboard.co.za";
-       var domain = "http://54.148.248.0:84"
+       var domain = "http://54.148.248.0:84";
+       //var domain = "http://127.0.0.1:8000";
 
-        var question = 1;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 1);
-        });
+        function updateGraph() {
+            var engagement = $('#engagement').val();
 
-        question = 2;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 2);
-        });
+            var question = 1;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 1);
+            });
 
-        question = 3;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 3);
-        });
+            question = 2;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 2);
+            });
 
-        question = 4;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 4);
-        });
+            question = 3;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 3);
+            });
 
-        question = 5;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 5);
-        });
+            question = 4;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 4);
+            });
 
-        question = 6;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 6);
-        });
+            question = 5;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 5);
+            });
 
-        question = 7;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 7);
-        });
+            question = 6;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 6);
+            });
 
-        question = 8;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 8);
-        });
+            question = 7;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 7);
+            });
 
-        question = 9;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 9);
-        });
+            question = 8;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 8);
+            });
 
-        question = 10;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 10);
-        });
+            question = 9;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 9);
+            });
 
-        question = 11;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 11);
-        });
+            question = 10;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 10);
+            });
 
-        question = 12;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 12);
-        });
-        question = 13;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 13);
-        });
-        question = 14;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 14);
-        });
-        question = 15;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 15);
-        });
-        question = 16;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 16);
-        });
-        question = 17;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 17);
-        });
-        question = 18;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 18);
-        });
-        question = 19;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 19);
-        });
-        question = 20;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 20);
-        });
+            question = 11;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 11);
+            });
 
-        question = 21;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 21);
-        });
-        question = 22;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 22);
-        });
-        question = 23;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 23);
-        });
-        question = 24;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 24);
-        });
-        question = 25;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 25);
-        });
-        question = 26;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 26);
-        });
-        question = 27;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 27);
-        });
-        question = 28;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 28);
-        });
-        question = 29;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 29);
-        });
-        question = 30;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 30);
-        });
+            question = 12;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 12);
+            });
 
-        question = 31;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 31);
-        });
-        question = 32;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 32);
-        });
-        question = 33;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 33);
-        });
-        question = 34;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 34);
-        });
-        question = 35;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 35);
-        });
-        question = 36;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 36);
-        });
-        question = 37;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 37);
-        });
-        question = 38;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 38);
-        });
-        question = 39;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 39);
-        });
-        question = 40;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 40);
-        });
+            question = 13;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 13);
+            });
 
-        question = 41;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 41);
-        });
-        question = 42;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 42);
-        });
-        question = 43;
-        var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
-        d3.json(url, function (err, data) {
-            buildGraph(err, data, 43);
-        });
+            question = 14;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 14);
+            });
+
+            question = 15;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 15);
+            });
+
+            question = 16;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 16);
+            });
+
+            question = 17;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 17);
+            });
+
+            question = 18;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 18);
+            });
+
+            question = 19;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 19);
+            });
+
+            question = 20;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 20);
+            });
+
+            question = 21;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 21);
+            });
+
+            question = 22;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 22);
+            });
+
+            question = 23;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 23);
+            });
+
+            question = 24;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 24);
+            });
+
+            question = 25;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 25);
+            });
+
+            question = 26;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 26);
+            });
+
+            question = 27;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 27);
+            });
+
+            question = 28;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 28);
+            });
+
+            question = 29;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 29);
+            });
+
+            question = 30;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 30);
+            });
+
+            question = 31;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 31);
+            });
+
+            question = 32;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 32);
+            });
+
+            question = 33;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 33);
+            });
+
+            question = 34;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 34);
+            });
+
+            question = 35;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 35);
+            });
+
+            question = 36;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 36);
+            });
+
+            question = 37;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 37);
+            });
+
+            question = 38;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 38);
+            });
+
+            question = 39;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 39);
+            });
+
+            question = 40;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 40);
+            });
+
+
+            question = 41;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 41);
+            });
+
+            question = 42;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 42);
+            });
+
+            question = 43;
+            var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question + "/year/" + engagement + "";
+            //var url = domain + "/results/siteaverage/level/{{ app('request')->input('site') }}/question/" + question;
+            d3.json(url, function (err, data) {
+                buildGraph(err, data, 43);
+            });
+        }
 
 
     </script>
