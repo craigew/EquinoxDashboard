@@ -578,7 +578,7 @@ order by Engagement_Avg desc;");
 
     function agreeStronglyAgreeAverageSelect($question, $site, $year)
     {
-        return DB::select("SELECT Round((count(`" . $question . "`)/(select count(*) from Equinox.ResultsFinal where (site='" . $site . "' or ''='" . $site . "')))*100) as PercPosResp
+        return DB::select("SELECT Round((count(`" . $question . "`)/(select count(*) from Equinox.ResultsFinal where (site='" . $site . "' or ''='" . $site . "') and Engagement = '" . $year . "'))*100) as PercPosResp
 FROM Equinox.ResultsFinal
 where `" . $question . "` in (3,4)
 and Engagement = '" . $year . "'
