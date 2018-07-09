@@ -181,7 +181,14 @@
 </div>
 </body>
 <script>
-
+    function pausecomp(millis) {
+        var date = new Date();
+        var curDate = null;
+        do {
+            curDate = new Date();
+        }
+        while (curDate - date < millis);
+    }
 
     var url = "";
     var quesTxt = '';
@@ -227,6 +234,7 @@
     function updateGraph() {
         try {
 
+
             url = window.location.protocol + '//' + window.location.host;
             d3.select("#pie_chart").html("");
             var ddlArray = new Array();
@@ -249,8 +257,6 @@
                 ddlArray.push("Communication");
                 ddlArray.push("Learning");
                 ddlArray.push("Job");
-                // var quesTxt = '';
-                //Loop through array
                 for (var ques in ddlArray) {
                     if (ques > 46) {
                         switch (ques) {
@@ -297,13 +303,13 @@
                     if ($("#level").val() != "All")
                         url = url + "/level/" + $("#level").val().toLowerCase();
 
-                    //Check result of $.get(url) for blank data
-
                     if (ques == 44) {
+                        pausecomp(5);
                         updateBarGraph(ques);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
                     } else if (ques != 44 && ques != 45 && ques != 46) {
+                        pausecomp(5);
                         updatePieGraph(ques, quesTxt);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
@@ -449,7 +455,6 @@
 
 
         d3.json(url, function (err, data) {
-            //debugger;
             if ($('#question').val() == 'All') {
                 if (ques !== 44) {
                     var quesPass = '';
@@ -576,7 +581,7 @@
                 if (index === 0) {
                     var html = d3.select(this).attr("version", 1.1)
                         .attr("xmlns", "http://www.w3.org/2000/svg")
-                        .node().parentNode.innerHTML; 
+                        .node().parentNode.innerHTML;
                     let data = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(html);
                     var image = new Image;
                     image.onload = function () {
