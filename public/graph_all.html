@@ -304,12 +304,13 @@
                         url = url + "/level/" + $("#level").val().toLowerCase();
 
                     if (ques == 44) {
-                        pausecomp(5);
+                        pausecomp(50);
                         updateBarGraph(ques);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
                     } else if (ques != 44 && ques != 45 && ques != 46) {
-                        pausecomp(5);
+                        //console.log(url);
+                        pausecomp(50);
                         updatePieGraph(ques, quesTxt);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
@@ -341,7 +342,9 @@
                     url = window.location.protocol + '//' + window.location.host;
                 }
             }
+
         }
+
         catch (Exception) {
         }
 
@@ -455,7 +458,7 @@
 
 
         d3.json(url, function (err, data) {
-            if ($('#question').val() == 'All') {
+            if ($('#question').val() == 'All'&&data.length>0) {
                 if (ques !== 44) {
                     var quesPass = '';
                     if (quesT !== '') {
