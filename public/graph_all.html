@@ -190,6 +190,7 @@
         while (curDate - date < millis);
     }
 
+    var counter = 1;
     var url = "";
     var quesTxt = '';
 
@@ -252,10 +253,10 @@
 
 
                 for (i = 1; i <= ddlArray.length; i++) {
-                    console.log(ddlArray[i]);
+                    //console.log(ddlArray[i]);
 
                     quesTxt = ddlArray[i];
-                    console.log(quesTxt);
+                   // console.log(quesTxt);
                     url = window.location.protocol + '//' + window.location.host;
                     if (!isNaN(quesTxt)) {
                         url = url + "/results/client/" + $('#resultsSet').val() + "/question/" + quesTxt.toLowerCase();
@@ -263,7 +264,6 @@
                     else {
                         url = url + "/results/client/" + $('#resultsSet').val() + "/" + quesTxt.toLowerCase();
                     }
-                    console.log(2);
                     if ($("#site").val() != "All")
                         url = url + "/site/" + $("#site").val();
 
@@ -272,14 +272,12 @@
 
                     if (quesTxt == 44) {
                         pausecomp(50);
-                        console.log(4);
                         updateBarGraph(quesTxt);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
                     } else  {
                         //console.log(url);
                         pausecomp(50);
-                        console.log(5);
                         updatePieGraph(quesTxt);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
@@ -319,7 +317,7 @@
 
     }
 
-    function updateBarGraph(ques) {
+    function updateBarGraph(question) {
         var margin = {top: 20, right: 20, bottom: 330, left: 40};
         width = 700 - margin.left - margin.right,
             height = 720 - margin.top - margin.bottom;
@@ -338,11 +336,12 @@
             .append('div')
             .attr('class', 'wrapperDivs')
             .append('span')
-            .text('Q ' + ques)
+            .text('Q ' + question)
             .attr('class', 'labelspans')
             .append('div')
             .attr('class', 'wrapperDivs')
             .append("svg")
+            .attr('id', question)
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -392,6 +391,7 @@
                 .attr("dy", ".15em")
                 .attr("transform", "rotate(-90)");
 
+
             // add the y Axis
             svg.append("g")
                 .call(d3.axisLeft(y));
@@ -424,7 +424,6 @@
             .outerRadius(radius - 40)
             .innerRadius(radius - 40);
 
-        console.log(7);
         d3.json(url, function (err, data) {
             if ($('#question').val() == 'All' && data.length > 0) {
                 if (question !== 44) {
@@ -440,7 +439,7 @@
                         .append("svg")
                         .attr("width", width)
                         .attr("height", height)
-                        .attr('id', 'chartnumber' + question)
+                        .attr('id', question)
                         .append("g")
                         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
                     d3.selectAll('svg')
@@ -538,16 +537,20 @@
 
     d3.select("#save").on("click", function () {
         if ($('#question').val() == 'All') {
+            var question_name ='';
 
-            var index = 0;
+           // var index = 0;
 
             var x = $('svg');
 
             d3.selectAll('svg').each(function (d) {
-                if (index === 0) {
+
+
                     var html = d3.select(this).attr("version", 1.1)
                         .attr("xmlns", "http://www.w3.org/2000/svg")
                         .node().parentNode.innerHTML;
+                    let question_name=this.id;
+
                     let data = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(html);
                     var image = new Image;
                     image.onload = function () {
@@ -557,15 +560,16 @@
                         var context = canvas.getContext('2d');
                         context.drawImage(image, 0, 0);
                         var a = document.createElement('a');
-                        index++;
-                        a.download = "image_" + index + "_" + $("#site").val() + "_" + $("#level").val() + ".png";
+                        a.download = "image_" + image.id + "_" + $("#site").val() + "_" + $("#level").val() + ".png";
                         a.href = canvas.toDataURL('image/png');
                         document.body.appendChild(a);
                         a.click();
                     };
+                    image.id=question_name;
                     image.src = data;
 
-                }
+
+
 
             });
         }
@@ -595,7 +599,7 @@
         }
     });
 
-
+counter = 1;
     updateGraph();
 
 
