@@ -35,7 +35,7 @@ class ResultsController extends Controller
 
     public function returnQuestion($client, $id)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018" || $client == "Widney2018") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -47,7 +47,7 @@ FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018" || $client == "Widney2018") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
@@ -68,7 +68,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForLevel($client, $id, $level)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018" || $client == "Widney2018") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -81,7 +81,7 @@ where Level='" . $level . "'
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018" || $client == "Widney2018") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Level='" . $level . "'
@@ -106,7 +106,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSite($client, $id, $site)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018" || $client == "Widney2018") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -119,7 +119,7 @@ where Site='" . $site . "'
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018" || $client == "Widney2018") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'
@@ -144,7 +144,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSiteAndLevel($client, $id, $site, $level)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018" || $client == "Widney2018") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -158,7 +158,7 @@ and Level='" . $level . "'
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "ARG2018"|| $client == "Widney2018") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'
@@ -292,27 +292,27 @@ order by Engagement_Avg desc;");
     }
 
     public
-    function returnMeaning()
+    function returnMeaning($client)
     {
-        return $this->meaningSelect('', '', '');
+        return $this->meaningSelect($client, '', '');
     }
 
     public
     function returnMeaningForSite($client, $site)
     {
-        return $this->meaningSelect('', $site, '');
+        return $this->meaningSelect($client, $site, '');
     }
 
     public
     function returnMeaningForLevel($client, $level)
     {
-        return $this->meaningSelect('', '', $level);
+        return $this->meaningSelect($client, '', $level);
     }
 
     public
     function returnMeaningForSiteAndLevel($client, $site, $level)
     {
-        return $this->meaningSelect('', $site, $level);
+        return $this->meaningSelect($client, $site, $level);
     }
 
     function meaningSelect($client, $site, $level)
@@ -321,33 +321,34 @@ order by Engagement_Avg desc;");
 FROM (select round((`16`+`17`+`18`+`19`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
     }
 
     public
-    function returnRecognition()
+    function returnRecognition($client)
     {
-        return $this->recognitionSelect('', '', '');
+        return $this->recognitionSelect($client, '', '');
     }
 
     public
     function returnRecognitionForSite($client, $site)
     {
-        return $this->recognitionSelect('', $site, '');
+        return $this->recognitionSelect($client, $site, '');
     }
 
     public
     function returnRecognitionForLevel($client, $level)
     {
-        return $this->recognitionSelect('', '', $level);
+        return $this->recognitionSelect($client, '', $level);
     }
 
     public
     function returnRecognitionForSiteAndLevel($client, $site, $level)
     {
-        return $this->recognitionSelect('', $site, $level);
+        return $this->recognitionSelect($client, $site, $level);
     }
 
     function recognitionSelect($client, $site, $level)
@@ -356,7 +357,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`20`+`21`+`22`+`23`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
     }
@@ -392,7 +394,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`22`+`23`+`24`+`25`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
@@ -400,7 +403,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`24`+`25`+`26`+`27`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         }
@@ -437,7 +441,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`26`+`27`+`28`+`29`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
@@ -445,7 +450,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`28`+`29`+`30`+`31`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         }
@@ -482,7 +488,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`30`+`31`+`32`+`33`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
@@ -490,7 +497,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`32`+`33`+`34`+`35`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         }
@@ -527,7 +535,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`34`+`35`+`36`+`37`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
@@ -535,34 +544,35 @@ order by Engagement_Avg desc;");
 FROM (select round((`36`+`37`+`38`+`39`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         }
     }
 
     public
-    function returnJob()
+    function returnJob($client)
     {
-        return $this->jobSelect('', '', '');
+        return $this->jobSelect($client, '', '');
     }
 
     public
     function returnJobForSite($client, $site)
     {
-        return $this->jobSelect('', $site, '');
+        return $this->jobSelect($client, $site, '');
     }
 
     public
     function returnJobForLevel($client, $level)
     {
-        return $this->jobSelect('', '', $level);
+        return $this->jobSelect($client, '', $level);
     }
 
     public
     function returnJobForSiteAndLevel($client, $site, $level)
     {
-        return $this->jobSelect('', $site, $level);
+        return $this->jobSelect($client, $site, $level);
     }
 
     function jobSelect($client, $site, $level)
@@ -571,7 +581,8 @@ order by Engagement_Avg desc;");
 FROM (select round((`40`+`41`+`42`+`43`)/4) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
-and (Level='" . $level . "' or ''='" . $level . "')) a inner join Equinox.labels on a.Engagement_Avg=id
+and (Level='" . $level . "' or ''='" . $level . "')
+and Engagement='" . $client . "') a inner join Equinox.labels on a.Engagement_Avg=id
 group by Engagement_Avg,description
 order by Engagement_Avg desc;");
     }

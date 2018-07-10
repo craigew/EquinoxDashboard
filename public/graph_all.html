@@ -67,8 +67,8 @@
                     <td><select id="resultsSet" onchange="repopulateSites()">
                         <option>ARG2018</option>
                         <option>Sheltam2017</option>
-                        <option>SX2017</option>
-                        <option>SX2018</option>
+                        <option>sx2017</option>
+                        <option>sx2018</option>
                         <option>Widney2018</option>
                     </select></td>
                 </tr>
@@ -122,7 +122,7 @@
                         <option>44</option>
                         <option>Engagement</option>
                         <option>Teamwork</option>
-                        <option>Meaining</option>
+                        <option>Meaning</option>
                         <option>Recognition</option>
                         <option>Leadership</option>
                         <option>Superior</option>
@@ -246,72 +246,41 @@
                     .attr('width', '100%')
                     .attr('style', 'margin-bottom:25px')
                     .attr('id', 'myrow');
-                for (var i = 1; i <= 46; i++) {
+                for (var i = 1; i <= 53; i++) {
                     ddlArray[i] = ddl[i].value;
                 }
-                ddlArray.push("Teamwork");
-                ddlArray.push("Meaning");
-                ddlArray.push("Recognition");
-                ddlArray.push("Leadership");
-                ddlArray.push("Superior");
-                ddlArray.push("Communication");
-                ddlArray.push("Learning");
-                ddlArray.push("Job");
-                for (var ques in ddlArray) {
-                    if (ques > 46) {
-                        switch (ques) {
-                            case '47':
-                                quesTxt = 'Teamwork';
-                                break;
-                            case '48':
-                                quesTxt = 'Meaning';
-                                break;
-                            case '49':
-                                quesTxt = 'Recognition';
-                                break;
-                            case '50':
-                                quesTxt = 'Leadership';
-                                break;
-                            case '51':
-                                quesTxt = 'Superior';
-                                break;
-                            case '52':
-                                quesTxt = 'Communication';
-                                break;
-                            case '53':
-                                quesTxt = 'Learning';
-                                break;
-                            case '54':
-                                quesTxt = 'Job';
-                                break;
 
-                        }
-                    }
 
+                for (i = 1; i <= ddlArray.length; i++) {
+                    console.log(ddlArray[i]);
+
+                    quesTxt = ddlArray[i];
+                    console.log(quesTxt);
                     url = window.location.protocol + '//' + window.location.host;
-                    if (!isNaN(ques) && ques < 47) {
-                        if (ques != 45 && ques != 46) {
-                            url = url + "/results/client/" + $('#resultsSet').val().toLowerCase() + "/question/" + ques;
-                        }
+                    if (!isNaN(quesTxt)) {
+                        url = url + "/results/client/" + $('#resultsSet').val() + "/question/" + quesTxt.toLowerCase();
                     }
                     else {
-                        url = url + "/results/client/" + $('#resultsSet').val().toLowerCase() + "/" + quesTxt.toLowerCase();
+                        url = url + "/results/client/" + $('#resultsSet').val() + "/" + quesTxt.toLowerCase();
                     }
+                    console.log(2);
                     if ($("#site").val() != "All")
-                        url = url + "/site/" + $("#site").val().toLowerCase();
+                        url = url + "/site/" + $("#site").val();
 
                     if ($("#level").val() != "All")
-                        url = url + "/level/" + $("#level").val().toLowerCase();
+                        url = url + "/level/" + $("#level").val();
 
-                    if (ques == 44) {
+                    if (quesTxt == 44) {
                         pausecomp(50);
-                        updateBarGraph(ques);
+                        console.log(4);
+                        updateBarGraph(quesTxt);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
-                    } else if (ques != 44 && ques != 45 && ques != 46) {
+                    } else  {
                         //console.log(url);
                         pausecomp(50);
-                        updatePieGraph(ques, quesTxt);
+                        console.log(5);
+                        updatePieGraph(quesTxt);
                         url = window.location.protocol + '//' + window.location.host;
                         quesTxt = '';
                     }
@@ -320,17 +289,17 @@
             else {
 
                 if (!isNaN($("#question").val())) {
-                    url = url + "/results/client/" + $('#resultsSet').val().toLowerCase() + "/question/" + $("#question").val();
+                    url = url + "/results/client/" + $('#resultsSet').val() + "/question/" + $("#question").val().toLowerCase();
                 }
                 else {
-                    url = url + "/results/client/" + $('#resultsSet').val().toLowerCase() + "/" + $("#question").val().toLowerCase();
+                    url = url + "/results/client/" + $('#resultsSet').val() + "/" + $("#question").val().toLowerCase();
                 }
 
                 if ($("#site").val() != "All")
-                    url = url + "/site/" + $("#site").val().toLowerCase();
+                    url = url + "/site/" + $("#site").val();
 
                 if ($("#level").val() != "All")
-                    url = url + "/level/" + $("#level").val().toLowerCase();
+                    url = url + "/level/" + $("#level").val();
 
                 if ($("#question").val() == '44') {
                     updateBarGraph($('#question').val());
@@ -429,7 +398,7 @@
         });
     }
 
-    function updatePieGraph(ques, quesT) {
+    function updatePieGraph(question) {
         var width = 400,
             height = 400,
             radius = Math.min(width, height) / 2;
@@ -440,8 +409,7 @@
 
         var percentageFormat = d3.format(".1%");
 
-        var question = $("#question").val();
-        if (question != 11) {
+        if (question != 11 && $("#question").val()!=11) {
             var color = d3.scaleOrdinal(["#1f77b4", "#2ca02c", "#ff7f0e", "rgb(214, 39, 40)"])
                 .domain(["Strongly Agree", "Agree", "Disagree", "Strongly Disagree"]);
         } else {
@@ -456,28 +424,23 @@
             .outerRadius(radius - 40)
             .innerRadius(radius - 40);
 
-
+        console.log(7);
         d3.json(url, function (err, data) {
-            if ($('#question').val() == 'All'&&data.length>0) {
-                if (ques !== 44) {
-                    var quesPass = '';
-                    if (quesT !== '') {
-                        quesPass = quesT;
-                    } else {
-                        quesPass = ques;
-                    }
+            if ($('#question').val() == 'All' && data.length > 0) {
+                if (question !== 44) {
+
                     var svg = d3.select("#myrow")
                         .append('div')
                         .attr('class', 'wrapperDivs')
                         .append('span')
-                        .text('Q: ' + quesPass)
+                        .text('Q: ' + question)
                         .attr('class', 'labelspans')
                         .append('div')
                         .attr('class', 'wrapperDivs')
                         .append("svg")
                         .attr("width", width)
                         .attr("height", height)
-                        .attr('id', 'chartnumber' + ques)
+                        .attr('id', 'chartnumber' + question)
                         .append("g")
                         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
                     d3.selectAll('svg')
