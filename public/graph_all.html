@@ -70,6 +70,8 @@
                         <option>sx2017</option>
                         <option>sx2018</option>
                         <option>Widney2018</option>
+                        <option>LLumar2018</option>
+                        <option>Sheltam2018</option>
                     </select></td>
                 </tr>
                 <tr>
@@ -270,7 +272,7 @@
                     if ($("#level").val() != "All")
                         url = url + "/level/" + $("#level").val();
 
-                    if (quesTxt == 44) {
+                    if ((quesTxt == 44) || (quesTxt == 38 && $('#resultsSet').val() == "Sheltam2018")) {
                         pausecomp(50);
                         updateBarGraph(quesTxt);
                         url = window.location.protocol + '//' + window.location.host;
