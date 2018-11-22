@@ -64,7 +64,7 @@
             <table style="display: inline">
                 <tr>
                     <td>Result Set</td>
-                    <td><select id="resultsSet" onchange="repopulateSites()">
+                    <td><select id="resultsSet" onchange="repopulateSites();repopulateLevel();">
                         <option>ARG2018</option>
                         <option>Sheltam2017</option>
                         <option>sx2017</option>
@@ -198,39 +198,47 @@
 
 
     function repopulateSites() {
-
         var optionsArray = [];
 
+        var sel = document.getElementById('site');
+        var len = sel.options.length;
+        for (var i = len; i >= 0; i--) {
+            sel.options.remove(i)
+        }
         if ($('#resultsSet').val() == 'Widney2018') {
-            var sel = document.getElementById('site');
-            var len = sel.options.length;
-            for (var i = len; i >= 0; i--) {
-                sel.options.remove(i)
-            }
+            optionsArray = ['All', 'Widney'];
+        } else if ($('#resultsSet').val() == 'Sheltam2018') {
+            optionsArray = ['All', 'Middelburg', 'Mozambique', 'PE', 'Randfontein', 'Virginia'];
+        } else{
+            optionsArray = ['All', 'Corporate', 'DAF', 'Ga-Rankuwa', 'Neave', 'Strundale'];
+        }
 
-            optionsArray = ['All', 'Widney']
+        for (var i = 0; i < optionsArray.length; i++) {
+            var option = document.createElement("option");
+            option.text = optionsArray[i];
+            sel.add(option);
+        }
+    }
 
-            for (var i = 0; i < optionsArray.length; i++) {
-                var option = document.createElement("option");
-                option.text = optionsArray[i];
-                sel.add(option);
-            }
+    function repopulateLevel() {
+        var optionsArray = [];
 
+        var sel = document.getElementById('level');
+        var len = sel.options.length;
+        for (var i = len; i >= 0; i--) {
+            sel.options.remove(i)
+        }
 
-        } else {
-            var sel = document.getElementById('site');
-            var len = sel.options.length;
-            for (var i = len; i >= 0; i--) {
-                sel.options.remove(i)
-            }
+        if ($('#resultsSet').val() == 'Sheltam2018') {
+            optionsArray = ['All', 'Operations', 'Management', 'Administration'];
+        } else{
+            optionsArray = ['All', 'Shopfloor', 'General_Staff', 'Senior_Staff', 'Junior_Management', 'Middle_Management','Senior_Management'];
+        }
 
-            optionsArray = ['All', 'Corporate', 'DAF', 'Ga-Rankuwa', 'Neave', 'Strundale']
-            for (var i = 0; i < optionsArray.length; i++) {
-                var option = document.createElement("option");
-                option.text = optionsArray[i];
-                sel.add(option);
-            }
-
+        for (var i = 0; i < optionsArray.length; i++) {
+            var option = document.createElement("option");
+            option.text = optionsArray[i];
+            sel.add(option);
         }
     }
 
