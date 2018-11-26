@@ -309,14 +309,18 @@
                 if ($("#level").val() != "All")
                     url = url + "/level/" + $("#level").val();
 
-                if ($("#question").val() == '44') {
-                    updateBarGraph($('#question').val());
 
+                if (($("#question").val()  == 44) || ($("#question").val()  == 38 && $('#resultsSet').val() == "Sheltam2018")) {
+                    pausecomp(50);
+                    updateBarGraph($("#question").val() );
                     url = window.location.protocol + '//' + window.location.host;
-                } else {
-                    updatePieGraph();
-
+                    quesTxt = '';
+                } else  {
+                    //console.log(url);
+                    pausecomp(50);
+                    updatePieGraph($("#question").val() );
                     url = window.location.protocol + '//' + window.location.host;
+                    quesTxt = '';
                 }
             }
 
