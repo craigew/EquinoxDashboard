@@ -66,9 +66,11 @@
                     <td>Result Set</td>
                     <td><select id="resultsSet" onchange="repopulateSites();repopulateLevel();">
                         <option>ARG2018</option>
+                        <option>ARG2019</option>
                         <option>Sheltam2017</option>
                         <option>sx2017</option>
                         <option>sx2018</option>
+                        <option>sx2019</option>
                         <option>Widney2018</option>
                         <option>LLumar2018</option>
                         <option>Sheltam2018</option>
@@ -205,11 +207,14 @@
         for (var i = len; i >= 0; i--) {
             sel.options.remove(i)
         }
+
         if ($('#resultsSet').val() == 'Widney2018') {
             optionsArray = ['All', 'Widney'];
         } else if ($('#resultsSet').val() == 'Sheltam2018') {
             optionsArray = ['All', 'Middelburg', 'Mozambique', 'PE', 'Randfontein', 'Virginia'];
-        } else{
+        } else if (($('#resultsSet').val() == 'ARG2018') || ($('#resultsSet').val() == 'ARG2019')) {
+            optionsArray = ['All', 'Bedfordview', 'Bloemfontein', 'Durban', 'Port Elizabeth', 'Cape Town'];
+        }else{
             optionsArray = ['All', 'Corporate', 'DAF', 'Ga-Rankuwa', 'Neave', 'Strundale'];
         }
 
