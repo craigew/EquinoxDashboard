@@ -45,6 +45,7 @@ else 'No'
 end as 'description' ,count(*) as count
 FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
+and `11`!=''
 group by `11`
 order by `11` desc");
         } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018") and $id == '44') {
@@ -78,6 +79,7 @@ else 'No'
 end as 'description' ,count(*) as count
 FROM Equinox.ResultsFinal
 where Level='" . $level . "'
+and `11`!=''
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
@@ -116,6 +118,7 @@ else 'No'
 end as 'description' ,count(*) as count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'
+and `11`!=''
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
@@ -154,6 +157,7 @@ else 'No'
 end as 'description' ,count(*) as count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'
+and `11`!=''
 and Level='" . $level . "'
 and Engagement='" . $client . "'
 group by `11`
