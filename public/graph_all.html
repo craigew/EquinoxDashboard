@@ -7,7 +7,7 @@
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="js/saveSvgAsPng.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
@@ -59,7 +59,7 @@
     <div class="centerx">
         <br/>​
         <hr/>
-        ​​​​​​​​​​​​​​​​​​​<br/>​​​​​
+<br/>
         <div style="width: auto; text-align: center;">
             <table style="display: inline">
                 <tr>
@@ -74,6 +74,7 @@
                         <option>Widney2018</option>
                         <option>LLumar2018</option>
                         <option>Sheltam2018</option>
+                        <option>Axxess2022</option>
                     </select></td>
                 </tr>
                 <tr>
@@ -171,16 +172,16 @@
                 </tr>
             </table>
         </div>
-        <br/>​
+        <br/>
         <hr/>
-        ​​​​​​​​​​​​​​​​​​​<br/>​​​​​
+      <br/>
         <div id="pie_chart">
 
         </div>
         <div id="svgdataurl"></div>
-        <br/>​
+        <br/>
         <hr/>
-        ​​​​​​​​​​​​​​​​​​​<br/>​​​​​
+      <br/>
     </div>
 </div>
 </body>
@@ -214,6 +215,8 @@
             optionsArray = ['All', 'Middelburg', 'Mozambique', 'PE', 'Randfontein', 'Virginia'];
         } else if (($('#resultsSet').val() == 'ARG2018') || ($('#resultsSet').val() == 'ARG2019')) {
             optionsArray = ['All', 'Bedfordview', 'Bloemfontein', 'Durban', 'Port Elizabeth', 'Cape Town'];
+        }else if ($('#resultsSet').val() == 'Axxess2022') {
+            optionsArray = ['All', 'Accounts', 'Design', 'Development', 'Finance & Training', 'Hosting & Networking','Kitchen','Line','logistics','Sales','Support'];
         }else{
             optionsArray = ['All', 'Corporate', 'DAF', 'Ga-Rankuwa', 'Neave', 'Struandale'];
         }
@@ -236,6 +239,8 @@
 
         if ($('#resultsSet').val() == 'Sheltam2018') {
             optionsArray = ['All', 'Operations', 'Management', 'Administration'];
+        } else if ($('#resultsSet').val() == 'Axxess2022') {
+            optionsArray = ['All', 'Management', 'Senior Management', 'Staff','Team Leader'];
         } else{
             optionsArray = ['All', 'Shopfloor', 'General_Staff', 'Senior_Staff', 'Junior_Management', 'Middle_Management','Senior_Management'];
         }
