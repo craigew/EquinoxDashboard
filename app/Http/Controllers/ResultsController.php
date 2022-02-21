@@ -214,7 +214,7 @@ order by `" . $id . "` desc;");
     function engagementSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
-FROM (select round((`1`+`2`+`3`+`4`+`5`+`6`+`7`+`8`+`9`+`10`)/10) as Engagement_Avg
+FROM (select round(cast((`1`+`2`+`3`+`4`+`5`+`6`+`7`+`8`+`9`+`10`)/10) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -250,7 +250,7 @@ order by Engagement_Avg desc;");
     function teamworkSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
-FROM (select round((`12`+`13`+`14`+`15`)/4) as Engagement_Avg
+FROM (select round(cast((`12`+`13`+`14`+`15`)/4) AS DECIMAL(10,2))as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -286,7 +286,7 @@ order by Engagement_Avg desc;");
     function strategySelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
-FROM (select round((`16`+`17`+`18`+`19`+`20`+`21`)/6) as Engagement_Avg
+FROM (select round(cast((`16`+`17`+`18`+`19`+`20`+`21`)/6) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -322,7 +322,7 @@ order by Engagement_Avg desc;");
     function meaningSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
-FROM (select round((`16`+`17`+`18`+`19`)/4) as Engagement_Avg
+FROM (select round(cast((`16`+`17`+`18`+`19`)/4) AS DECIMAL(10,2))as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -358,7 +358,7 @@ order by Engagement_Avg desc;");
     function recognitionSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
-FROM (select round((`20`+`21`+`22`+`23`)/4) as Engagement_Avg
+FROM (select round(cast((`20`+`21`+`22`+`23`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -395,7 +395,7 @@ order by Engagement_Avg desc;");
     {
         if (($client == "Sheltam2017") || ($client == "Sheltam2018")) {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`22`+`23`+`24`+`25`)/4) as Engagement_Avg
+FROM (select round(cast((`22`+`23`+`24`+`25`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -404,7 +404,7 @@ group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`24`+`25`+`26`+`27`)/4) as Engagement_Avg
+FROM (select round(cast((`24`+`25`+`26`+`27`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -442,7 +442,7 @@ order by Engagement_Avg desc;");
     {
         if (($client == "Sheltam2017") || ($client == "Sheltam2018")) {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`26`+`27`+`28`+`29`)/4) as Engagement_Avg
+FROM (select round(cast((`26`+`27`+`28`+`29`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -451,7 +451,7 @@ group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`28`+`29`+`30`+`31`)/4) as Engagement_Avg
+FROM (select round(cast((`28`+`29`+`30`+`31`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -489,7 +489,7 @@ order by Engagement_Avg desc;");
     {
         if (($client == "Sheltam2017") || ($client == "Sheltam2018")) {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`30`+`31`+`32`+`33`)/4) as Engagement_Avg
+FROM (select round(cast((`30`+`31`+`32`+`33`)/4) AS DECIMAL(10,2))as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -498,7 +498,7 @@ group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`32`+`33`+`34`+`35`)/4) as Engagement_Avg
+FROM (select round(cast((`32`+`33`+`34`+`35`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -536,7 +536,7 @@ order by Engagement_Avg desc;");
     {
         if (($client == "Sheltam2017") || ($client == "Sheltam2018")) {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`34`+`35`+`36`+`37`)/4) as Engagement_Avg
+FROM (select round(cast((`34`+`35`+`36`+`37`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -545,7 +545,7 @@ group by Engagement_Avg,description
 order by Engagement_Avg desc;");
         } else {
             return DB::select("SELECT description,count(*) as count
-FROM (select round((`36`+`37`+`38`+`39`)/4) as Engagement_Avg
+FROM (select round(cast((`36`+`37`+`38`+`39`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
@@ -582,7 +582,7 @@ order by Engagement_Avg desc;");
     function jobSelect($client, $site, $level)
     {
         return DB::select("SELECT description,count(*) as count
-FROM (select round((`40`+`41`+`42`+`43`)/4) as Engagement_Avg
+FROM (select round(cast((`40`+`41`+`42`+`43`)/4) AS DECIMAL(10,2)) as Engagement_Avg
 from Equinox.ResultsFinal
 where (Site='" . $site . "' or ''='" . $site . "')
 and (Level='" . $level . "' or ''='" . $level . "')
