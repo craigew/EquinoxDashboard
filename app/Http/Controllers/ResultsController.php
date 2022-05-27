@@ -35,7 +35,7 @@ class ResultsController extends Controller
 
     public function returnQuestion($client, $id)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -48,7 +48,7 @@ where Engagement='" . $client . "'
 and `11`!=''
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Engagement='" . $client . "'
@@ -69,7 +69,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForLevel($client, $id, $level)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -83,7 +83,7 @@ and `11`!=''
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Level='" . $level . "'
@@ -108,7 +108,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSite($client, $id, $site)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -122,7 +122,7 @@ and `11`!=''
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'
@@ -147,7 +147,7 @@ order by `" . $id . "` desc;");
 
     public function returnQuestionForSiteAndLevel($client, $id, $site, $level)
     {
-        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '11') {
+        if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '11') {
             return DB::select("SELECT case `11`
 when '1' then 'Extremely Disatisfied'
 when '2' then 'Disatisfied'
@@ -162,7 +162,7 @@ and Level='" . $level . "'
 and Engagement='" . $client . "'
 group by `11`
 order by `11` desc");
-        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022") and $id == '44') {
+        } else if (($client == "sx2017" || $client == "sx2018" || $client == "sx2019" || $client == "ARG2018" || $client == "ARG2019" || $client == "Widney2018" || $client == "LLumar2018" || $client == "Axxess2022" || $client == "AIDC2022") and $id == '44') {
             return DB::select("select `44` description ,count(*) count
 FROM Equinox.ResultsFinal
 where Site='" . $site . "'

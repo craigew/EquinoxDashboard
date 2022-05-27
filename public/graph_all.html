@@ -75,6 +75,7 @@
                         <option>LLumar2018</option>
                         <option>Sheltam2018</option>
                         <option>Axxess2022</option>
+                        <option>AIDC2022</option>
                     </select></td>
                 </tr>
                 <tr>
@@ -125,6 +126,8 @@
                         <option>42</option>
                         <option>43</option>
                         <option>44</option>
+                        <option>45</option>
+                        <option>46</option>
                         <option>Engagement</option>
                         <option>Teamwork</option>
                         <option>Meaning</option>
@@ -217,6 +220,8 @@
             optionsArray = ['All', 'Bedfordview', 'Bloemfontein', 'Durban', 'Port Elizabeth', 'Cape Town'];
         }else if ($('#resultsSet').val() == 'Axxess2022') {
             optionsArray = ['All', 'Accounts', 'Design', 'Development', 'Finance & Training', 'Hosting & Networking','Kitchen','Lines','Logistics','Sales','Support'];
+        }else if ($('#resultsSet').val() == 'AIDC2022') {
+            optionsArray = ['All'];
         }else{
             optionsArray = ['All', 'Corporate', 'DAF', 'Ga-Rankuwa', 'Neave', 'Struandale'];
         }
@@ -241,7 +246,9 @@
             optionsArray = ['All', 'Operations', 'Management', 'Administration'];
         } else if ($('#resultsSet').val() == 'Axxess2022') {
             optionsArray = ['All', 'Management', 'Senior Management', 'Staff','Team Leader'];
-        } else{
+        } else if ($('#resultsSet').val() == 'AIDC2022') {
+            optionsArray = ['All'];
+        }else{
             optionsArray = ['All', 'Shopfloor', 'General_Staff', 'Senior_Staff', 'Junior_Management', 'Middle_Management','Senior_Management'];
         }
 
