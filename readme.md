@@ -1,6 +1,14 @@
 #url
 http://34.214.177.84:84/graph_all.html
 
+#Deployment
+####ssh
+ssh -i ~/.ssh/devs.pem ec2-user@ec2-34-214-177-84.us-west-2.compute.amazonaws.com
+####Folder on server
+/var/www/html/equinox/EquinoxDashboard
+####To get latest code
+git pull origin master
+
 #Retrieve results after import
 select * from Equinox.ResultsFinal where Engagement ='AIDC2022';
 
